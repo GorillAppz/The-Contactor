@@ -5,6 +5,7 @@ import { SectionList, View, Animated } from 'react-native';
 import ContactListItem from '../ContactListItem';
 import SearchHeader from '../SearchHeader';
 import ContactListSectionHeader from '../ContactListSectionHeader';
+import AddNewContactModal from '../AddNewContactModal';
 
 import { groupContacts } from '../helpers';
 import styles from './styles';
@@ -13,14 +14,17 @@ const ContactList = ({ contacts }) => {
 
 	const [filteredContacts, setFilteredContacts] = React.useState([]);
 	const [scrollY] = React.useState(new Animated.Value(0));
+	const [showAddContactModal, setShowAddContactModal] = React.useState(false);
 
 	React.useEffect(() => {
-		setFilteredContacts(groupContacts(contacts));
+		if (contacts.length) {
+			setFilteredContacts(groupContacts(contacts));
+		}
 	}, [contacts]);
 
 	const inputHandler = (input) => {
-		const contactsFilteredBySearch = contacts.filter((contact) => {
-			const lowerCaseName = contact.name.toLowerCase();
+		const contactsFilteredBySearch = contacts.filter(({ data }) => {
+			const lowerCaseName = data.name.toLowerCase();
 			const lowerCaseText = input.toLowerCase();
 			return lowerCaseName.includes(lowerCaseText);
 		});
@@ -32,6 +36,7 @@ const ContactList = ({ contacts }) => {
 			<SearchHeader
 				inputHandler={(input) => inputHandler(input)}
 				scrollY={scrollY}
+				openAddContactModalHandler={() => setShowAddContactModal(true)}
 			/>
 			<SectionList
 				sections={filteredContacts}
@@ -47,6 +52,7 @@ const ContactList = ({ contacts }) => {
 				scrollEventThrottle={16}
 				disableVirtualization
 			/>
+			<AddNewContactModal isVisible={showAddContactModal} cancelHandler={() => setShowAddContactModal(false)} />
 		</View>
 	);
 };
