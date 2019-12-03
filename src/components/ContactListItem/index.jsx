@@ -11,16 +11,16 @@ import styles from './styles';
 const ContactListItem = ({ contact, navigation: { navigate } }) => {
 	return (
 		<TouchableHighlight
-			onPress={() => navigate('ContactDetail', { id: contact.id })}
+			onPress={() => navigate('ContactDetail', { contact })}
 			style={styles.touchableContainer}
 		>
 			<View style={styles.container}>
 				<ContactImageThumbnail
-					uri={contact.image && contact.image.uri}
-					name={contact.name}
+					uri={contact.data.image && contact.data.image}
+					name={contact.data.name}
 				/>
 				<Text style={styles.text}>
-					{contact.name}
+					{contact.data.name}
 				</Text>
 			</View>
 		</TouchableHighlight>

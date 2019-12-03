@@ -1,7 +1,7 @@
 import React from 'react';
 
 import AppContainer from './src/routes';
-import { contactsInit } from './src/services/fileService';
+import { contactsInit } from './src/services/contactFileService';
 
 const App = () => {
 	React.useEffect(() => {

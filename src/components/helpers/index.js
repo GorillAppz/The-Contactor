@@ -4,7 +4,7 @@ export const isNumber = (char) => {
 
 export const groupContacts = (contacts) => {
 	const groupedObj = contacts.reduce((obj, contact) => {
-		let firstChar = contact.name.charAt(0).toUpperCase();
+		let firstChar = contact.data.name.charAt(0).toUpperCase();
 
 		if (isNumber(firstChar)) {
 			firstChar = '#';

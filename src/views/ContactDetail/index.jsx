@@ -3,7 +3,9 @@ import { View } from 'react-native';
 
 import Text from '../../components/Text';
 
-const ContactDetail = () => {
+const ContactDetail = ({ navigation }) => {
+	const { contact } = navigation.state.params;
+	console.log(contact);
 	return (
 		<View>
 			<Text>

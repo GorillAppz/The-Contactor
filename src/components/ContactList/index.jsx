@@ -18,7 +18,6 @@ const ContactList = ({ contacts }) => {
 		setFilteredContacts(groupContacts(contacts));
 	}, [contacts]);
 
-
 	const inputHandler = (input) => {
 		const contactsFilteredBySearch = contacts.filter((contact) => {
 			const lowerCaseName = contact.name.toLowerCase();
