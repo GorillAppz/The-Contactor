@@ -2,14 +2,21 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Platform } from 'react-native';
 
+import ContactDetail from '../views/ContactDetail';
+import Contacts from '../views/Contacts';
+
 const MainNavigator = createStackNavigator(
 	{
-		// Main: { screen: Main },
-		// Boards: { screen: Boards },
-		// Lists: { screen: Lists }
+		Contacts: {
+			screen: Contacts,
+			navigationOptions: {
+				headerBackTitle: 'Contacts'
+			}
+		},
+		ContactDetail: { screen: ContactDetail }
 	},
 	{
-		initialRouteName: 'Main',
+		initialRouteName: 'Contacts',
 		/* The header config from HomeScreen is now here */
 		defaultNavigationOptions: {
 			// headerStyle: {
