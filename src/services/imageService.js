@@ -1,7 +1,7 @@
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 
-const getPermission = async (permissionTypes) => {
+export const getPermission = async (permissionTypes) => {
 	await Promise.all(permissionTypes.map(async (type) => Permissions.askAsync(type)));
 };
 

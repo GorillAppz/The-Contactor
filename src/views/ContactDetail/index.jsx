@@ -14,7 +14,7 @@ const ContactDetail = () => {
 };
 
 ContactDetail.defaultNavigationOptions = {
-	headerBackTitle: null,
+	headerBackTitle: null
 };
 
 export default ContactDetail;
