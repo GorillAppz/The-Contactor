@@ -1,17 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
-
-import Text from '../../components/Text';
+import ContactDetailItem from '../../components/ContactDetailItem';
 
 const ContactDetail = ({ navigation }) => {
 	const { contact } = navigation.state.params;
-	console.log(contact);
 	return (
-		<View>
-			<Text>
-				Contact Detail
-			</Text>
-		</View>
+		<ContactDetailItem contact={contact} />
 	);
 };
 

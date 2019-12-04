@@ -36,7 +36,7 @@ export const contactsInit = async () => {
 			id: contact.id,
 			data: {
 				name: contact.name,
-				phoneNumber: phone,
+				phoneNumber: phone[0],
 				image: imageUri
 			}
 		};
