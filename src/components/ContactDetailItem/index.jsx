@@ -19,12 +19,22 @@ const ContactDetailItem = ({ contact }) => {
 				<Text style={styles.contactName}>{contact.data.name}</Text>
 				<View style={styles.buttonsArea}>
 					<View style={styles.buttonArea}>
-						<Button icon={(<Icon name="call" size={17} color="white" />)} buttonStyle={styles.buttons} />
-						<Text style={styles.buttonText}>phone</Text>
+						<Button
+							icon={(
+								<Icon type="font-awesome" name="comment" size={17} color="white" />
+							)}
+							buttonStyle={styles.buttons}
+						/>
+						<Text style={styles.buttonText}>message</Text>
 					</View>
 					<View style={styles.buttonArea}>
-						<Button icon={(<Icon name="message" size={17} color="white" />)} buttonStyle={styles.buttons} />
-						<Text style={styles.buttonText}>message</Text>
+						<Button
+							icon={(
+								<Icon type="font-awesome" name="phone" size={20} color="white" />
+							)}
+							buttonStyle={styles.buttons}
+						/>
+						<Text style={styles.buttonText}>phone</Text>
 					</View>
 				</View>
 			</View>

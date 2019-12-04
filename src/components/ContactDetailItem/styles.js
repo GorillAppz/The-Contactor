@@ -10,7 +10,7 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderBottomWidth: 0.8,
-		borderBottomColor: 'lightgray'
+		borderBottomColor: '#383838'
 	},
 	buttonsArea: {
 		flexDirection: 'row'

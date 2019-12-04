@@ -4,7 +4,7 @@ export default StyleSheet.create({
 	phoneNumberArea: {
 		paddingHorizontal: 10,
 		borderBottomWidth: 0.8,
-		borderBottomColor: 'lightgray',
+		borderBottomColor: '#383838',
 		paddingVertical: 4
 	},
 	phoneNumber: {
