@@ -1,12 +1,14 @@
 import React from 'react';
-import { View, Text, Animated } from "react-native";
-import { Input, Icon } from 'react-native-elements';
+import { View, Text, Animated } from 'react-native';
+import { Input, Button } from 'react-native-elements';
+
+import { CRAYOLA } from '../../styles/colors';
 import styles from './styles';
 
 const MAX_HEADER_HEIGHT = 150;
 const MIN_HEADER_HEIGHT = 90;
 
-const SearchHeader = ({ inputHandler, scrollY }) => {
+const SearchHeader = ({ inputHandler, scrollY, openAddContactModalHandler }) => {
 
 	const headerHeight = scrollY.interpolate({
 		inputRange: [0, MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT],
@@ -23,9 +25,25 @@ const SearchHeader = ({ inputHandler, scrollY }) => {
 	return (
 		<Animated.View style={{ ...styles.headerContainer, height: headerHeight }}>
 			<View style={styles.smallHeaderContainer}>
-				<Icon name="adjust" type="font-awesome" />
+				<Button
+					icon={{
+						name: 'question-circle',
+						type: 'font-awesome',
+						color: CRAYOLA,
+						size: 30
+					}}
+					buttonStyle={styles.button}
+				/>
 				<Animated.Text style={{ ...styles.smallHeader, opacity: smallHeaderOpacity }}>Contacts</Animated.Text>
-				<Icon name="add" />
+				<Button
+					icon={{
+						name: 'add',
+						color: CRAYOLA,
+						size: 34
+					}}
+					buttonStyle={styles.button}
+					onPress={openAddContactModalHandler}
+				/>
 			</View>
 			<Text style={styles.bigHeader}>Contacts</Text>
 			<Input

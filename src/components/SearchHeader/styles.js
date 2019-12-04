@@ -34,8 +34,9 @@ export default StyleSheet.create({
 		alignSelf: 'center',
 		zIndex: 999,
 		width: '100%',
-		height: 30,
+		height: 35,
 		display: 'flex',
+		alignItems: 'center',
 		flexDirection: 'row',
 		justifyContent: 'space-between'
 	},
@@ -44,5 +45,9 @@ export default StyleSheet.create({
 		fontSize: 40,
 		zIndex: -1,
 		marginBottom: 10
+	},
+	button: {
+		padding: 0,
+		backgroundColor: 'white'
 	}
 });
