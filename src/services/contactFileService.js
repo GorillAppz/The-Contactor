@@ -28,9 +28,12 @@ export const contactsInit = async () => {
 		if (contact.image) {
 			imageUri = contact.image.uri;
 		}
-		let phone = '';
+		let phone = [];
 		if (contact.phoneNumbers) {
-			phone = contact.phoneNumbers.map((phone) => phone.digits);
+			phone = contact.phoneNumbers.map((phone) => ({
+				phone: phone.digits,
+				label: phone.label
+			}));
 		}
 
 		return {

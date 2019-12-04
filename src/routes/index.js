@@ -19,10 +19,11 @@ const MainNavigator = createStackNavigator(
 		initialRouteName: 'Contacts',
 		/* The header config from HomeScreen is now here */
 		defaultNavigationOptions: {
-			// headerStyle: {
-			// backgroundColor: PURPLE
-			// },
-			// headerTintColor: LIGHT,
+			headerStyle: {
+				backgroundColor: 'black',
+				color: 'white'
+			},
+			headerTintColor: '#268bff',
 			headerTitleStyle: {
 				fontWeight: 'bold',
 				alignSelf: 'center',
