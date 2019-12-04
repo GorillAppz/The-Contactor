@@ -30,7 +30,8 @@ const SearchHeader = ({ inputHandler, scrollY }) => {
 			<Text style={styles.bigHeader}>Contacts</Text>
 			<Input
 				placeholder="Search"
-				leftIcon={{ name: 'search', color: 'gray' }}
+				placeholderTextColor="#7a7a7a"
+				leftIcon={{ name: 'search', color: '#7a7a7a' }}
 				inputStyle={styles.input}
 				inputContainerStyle={styles.inputContainer}
 				containerStyle={styles.container}

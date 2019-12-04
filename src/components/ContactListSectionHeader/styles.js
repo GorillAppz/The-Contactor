@@ -3,13 +3,13 @@ import { DARK } from '../../styles/colors';
 
 export default StyleSheet.create({
 	container: {
-		backgroundColor: '#E6E6E6',
+		backgroundColor: '#292727',
 		paddingLeft: '4%'
 	},
 	text: {
 		fontWeight: '800',
 		fontSize: 16,
 		paddingVertical: 5,
-		color: DARK
+		color: 'white'
 	}
 });

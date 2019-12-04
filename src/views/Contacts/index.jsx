@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, StatusBar } from 'react-native';
 import ContactList from '../../components/ContactList';
 
 import { getAllContacts } from '../../services/contactFileService';
@@ -7,6 +7,7 @@ import styles from './styles';
 
 const Contacts = () => {
 	const [sortedContacts, setContacts] = React.useState([]);
+	StatusBar.setBarStyle('light-content');
 
 	React.useEffect(() => {
 		(async () => {
@@ -16,15 +17,12 @@ const Contacts = () => {
 		})();
 	}, []);
 
+
 	return (
 		<SafeAreaView style={{ ...styles.container, ...styles.SafeArea }}>
 			<ContactList contacts={sortedContacts} />
 		</SafeAreaView>
 	);
-};
-
-Contacts.navigationOptions = {
-	header: null
 };
 
 export default Contacts;

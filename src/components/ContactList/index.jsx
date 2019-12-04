@@ -5,7 +5,6 @@ import { SectionList, View, Animated } from 'react-native';
 import ContactListItem from '../ContactListItem';
 import SearchHeader from '../SearchHeader';
 import ContactListSectionHeader from '../ContactListSectionHeader';
-import AddNewContactModal from '../AddNewContactModal';
 
 import { groupContacts } from '../helpers';
 import styles from './styles';
@@ -52,7 +51,6 @@ const ContactList = ({ contacts }) => {
 				scrollEventThrottle={16}
 				disableVirtualization
 			/>
-			<AddNewContactModal isVisible={showAddContactModal} cancelHandler={() => setShowAddContactModal(false)} />
 		</View>
 	);
 };

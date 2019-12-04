@@ -9,7 +9,8 @@ export default StyleSheet.create({
 	},
 	input: {
 		height: 50,
-		width: '80%'
+		width: '80%',
+		color: 'white'
 	},
 	inputContainer: {
 		borderBottomWidth: 0,
@@ -17,7 +18,7 @@ export default StyleSheet.create({
 	},
 	container: {
 		borderBottomWidth: 0,
-		backgroundColor: 'rgba(200,200,200,0.5)',
+		backgroundColor: '#292727',
 		width: '80%',
 		alignSelf: 'center',
 		borderRadius: 10
@@ -30,7 +31,7 @@ export default StyleSheet.create({
 	smallHeaderContainer: {
 		position: 'absolute',
 		top: 0,
-		backgroundColor: 'white',
+		backgroundColor: 'black',
 		alignSelf: 'center',
 		zIndex: 999,
 		width: '100%',
@@ -43,6 +44,7 @@ export default StyleSheet.create({
 		fontWeight: '800',
 		fontSize: 40,
 		zIndex: -1,
-		marginBottom: 10
+		marginBottom: 10,
+		color: 'white'
 	}
 });

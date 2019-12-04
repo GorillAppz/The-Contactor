@@ -2,10 +2,11 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
 	container: {
-		flex: 1
+		flex: 1,
+		backgroundColor: 'black'
 	},
 	header: {
-		marginVertical: 10,
+		paddingVertical: 10,
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderBottomWidth: 0.8,
@@ -19,27 +20,19 @@ export default StyleSheet.create({
 		paddingVertical: 8
 	},
 	buttonText: {
-		color: 'blue',
+		color: '#268bff',
 		fontSize: 11,
 		marginTop: 4
 	},
 	contactName: {
 		fontSize: 25,
-		fontWeight: 'bold'
+		fontWeight: 'bold',
+		color: 'white'
 	},
 	buttons: {
-		height: 30,
-		width: 30,
+		height: 33,
+		width: 33,
 		borderRadius: 50,
-		backgroundColor: 'blue'
-	},
-	phoneNumberArea: {
-		paddingHorizontal: 10,
-		borderBottomWidth: 0.8,
-		borderBottomColor: 'lightgray',
-		paddingBottom: 8
-	},
-	phoneNumber: {
-		color: 'blue'
+		backgroundColor: '#268bff'
 	}
 });

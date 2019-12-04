@@ -5,13 +5,15 @@ export default StyleSheet.create({
 	container: {
 		flex: 1,
 		display: 'flex',
+		backgroundColor: 'black',
 		flexDirection: 'row',
 		alignItems: 'center',
-		borderBottomColor: 'lightgray',
-		borderBottomWidth: 1,
+		borderBottomColor: 'gray',
+		borderBottomWidth: 0.6,
 		padding: 5
 	},
 	text: {
-		fontSize: 17
+		fontSize: 17,
+		color: 'white'
 	}
 });

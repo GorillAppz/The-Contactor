@@ -8,8 +8,4 @@ const ContactDetail = ({ navigation }) => {
 	);
 };
 
-ContactDetail.defaultNavigationOptions = {
-	headerBackTitle: null
-};
-
 export default ContactDetail;
