@@ -26,7 +26,8 @@ export default StyleSheet.create({
 	smallHeader: {
 		fontSize: 20,
 		fontWeight: 'bold',
-		textAlign: 'center'
+		textAlign: 'center',
+		color: 'white'
 	},
 	smallHeaderContainer: {
 		position: 'absolute',
@@ -47,5 +48,9 @@ export default StyleSheet.create({
 		zIndex: -1,
 		marginBottom: 10,
 		color: 'white'
+	},
+	button: {
+		backgroundColor: 'transparent',
+		padding: 0
 	}
 });

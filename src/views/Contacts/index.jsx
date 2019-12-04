@@ -25,4 +25,8 @@ const Contacts = () => {
 	);
 };
 
+Contacts.navigationOptions = {
+	header: null
+};
+
 export default Contacts;

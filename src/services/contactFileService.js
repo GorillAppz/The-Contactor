@@ -23,7 +23,8 @@ export const addContact = async (contact, id) => {
 export const contactsInit = async () => {
 	const contacts = await getAllPhoneContacts();
 	const contactsWithDefinedName = contacts.filter((contact) => contact.name !== undefined);
-	const extractedContacts = contactsWithDefinedName.map((contact) => {
+	const nonEmialContacts = contactsWithDefinedName.filter((contact) => contact.phoneNumbers);
+	const extractedContacts = nonEmialContacts.map((contact) => {
 		let imageUri = '';
 		if (contact.image) {
 			imageUri = contact.image.uri;
