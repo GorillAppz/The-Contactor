@@ -1,15 +1,14 @@
 import React from 'react';
 import { View, Image } from 'react-native';
 import { Button } from 'react-native-elements';
+
 import { takePhoto, selectFromCameraRoll } from '../../services/imageService';
-
 import Text from '../Text';
-
 import styles from './styles';
+import { stringType, inputHandlerType } from '../../types';
+import ContactImageThumbnail from '../ContactImageThumbnail/index';
 
-import { stringType, funcType } from '../../types';
-
-const ThumbnailInput = ({ currImage, errorMsg, inputHandler }) => {
+const ThumbnailInput = ({ currImage, errorMsg, inputHandler, contactName }) => {
 	const _takePhotoHandler = async () => {
 		inputHandler(await takePhoto());
 	};
@@ -20,7 +19,6 @@ const ThumbnailInput = ({ currImage, errorMsg, inputHandler }) => {
 
 	return (
 		<View style={styles.container}>
-			<Text h6 style={styles.label}>Select Thumbnail</Text>
 			<Text style={styles.errorMsg}>{errorMsg}</Text>
 			{
 				currImage.length
@@ -32,18 +30,20 @@ const ThumbnailInput = ({ currImage, errorMsg, inputHandler }) => {
 								: null}
 						/>
 					)
-					: null
+					: <ContactImageThumbnail width={150} height={150} fontSize={30} name={contactName} />
 			}
 			<View style={styles.buttonsContainer}>
 				<Button
-					style={styles.button}
-					icon={{ name: 'camera-alt', color: 'grey', size: 45 }}
+					buttonStyle={styles.button}
+					title="Take Photo"
+					titleStyle={styles.title}
 					onPress={async () => _takePhotoHandler()}
 					type="outline"
 				/>
 				<Button
-					style={styles.button}
-					icon={{ name: 'insert-photo', color: 'grey', size: 45 }}
+					buttonStyle={styles.button}
+					title="Add Photo"
+					titleStyle={styles.title}
 					type="outline"
 					onPress={async () => _cameraRollHandler()}
 				/>
@@ -55,7 +55,8 @@ const ThumbnailInput = ({ currImage, errorMsg, inputHandler }) => {
 ThumbnailInput.propTypes = {
 	currImage: stringType.isRequired,
 	errorMsg: stringType,
-	inputHandler: funcType.isRequired
+	inputHandler: inputHandlerType.isRequired,
+	contactName: stringType
 };
 
 export default ThumbnailInput;

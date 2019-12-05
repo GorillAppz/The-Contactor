@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { GRAY } from '../../styles/colors';
+import { GRAY, BLUE } from '../../styles/colors';
 
 export default StyleSheet.create({
 	container: {
@@ -27,7 +27,11 @@ export default StyleSheet.create({
 		justifyContent: 'space-around'
 	},
 	button: {
-		width: '100%'
+		borderColor: 'transparent'
+	},
+	title: {
+		fontSize: 16,
+		color: BLUE
 	},
 	errorMsg: {
 		color: 'red'

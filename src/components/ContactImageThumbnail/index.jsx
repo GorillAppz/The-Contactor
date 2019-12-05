@@ -1,17 +1,18 @@
 import React from 'react';
 import { Image, View } from 'react-native';
 import tinyColor from 'tinycolor2';
+import { Icon } from 'react-native-elements';
 
 import Text from '../Text';
-
 import { LIGHT, DARK } from '../../styles/colors';
 import styles from './styles';
+import { stringType, numberType } from '../../types/index';
 
-const ContactImageThumbnail = ({ uri, name }) => {
+const ContactImageThumbnail = ({ uri, name, width, height, fontSize }) => {
 	const withImage = (
 		<Image
 			source={{ uri }}
-			style={{ width: 50, height: 50 }}
+			style={{ width, height }}
 		/>
 	);
 	const withoutImage = () => {
@@ -27,21 +28,28 @@ const ContactImageThumbnail = ({ uri, name }) => {
 		}, [bgColor]);
 
 		const initials = name.split(' ').map((x) => x.charAt(0).toUpperCase());
-
 		return (
 			<View style={{ ...styles.withoutImageTextContainer, backgroundColor: bgColor }}>
-				<Text style={{ ...styles.withoutImageText, color: textColor }}>
-					{initials}
-				</Text>
+				{initials.length > 1
+					? <Text style={{ color: textColor, fontSize }}>{initials}</Text>
+					: <Icon type="font-awesome" name="user" size={height - 10} iconStyle={{ color: textColor }} />}
 			</View>
 		);
 	};
 
 	return (
-		<View style={styles.container}>
+		<View style={{ ...styles.container, width, height, borderRadius: height }}>
 			{uri ? withImage : withoutImage()}
 		</View>
 	);
+};
+
+ContactImageThumbnail.propTypes = {
+	uri: stringType,
+	name: stringType,
+	height: numberType,
+	width: numberType,
+	fontSize: numberType
 };
 
 export default ContactImageThumbnail;

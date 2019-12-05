@@ -1,6 +1,5 @@
-export const isNumber = (char) => {
-	return !Number.isNaN(char - parseFloat(char));
-};
+export const isNumber = (char) => !Number.isNaN(char - parseFloat(char));
+
 
 export const groupContacts = (contacts) => {
 	const groupedObj = contacts.reduce((obj, contact) => {
@@ -20,9 +19,7 @@ export const groupContacts = (contacts) => {
 		return newObj;
 	}, {});
 
-	const groupedArray = Object.keys(groupedObj).map((key) => {
-		return { title: key, data: [...groupedObj[key]] };
-	});
+	const groupedArray = Object.keys(groupedObj).map((key) => ({ title: key, data: [...groupedObj[key]] }));
 
 	return groupedArray;
 };

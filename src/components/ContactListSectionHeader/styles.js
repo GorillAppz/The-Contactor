@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
-import { DARK } from '../../styles/colors';
+import { DARK_GRAY } from '../../styles/colors';
 
 export default StyleSheet.create({
 	container: {
-		backgroundColor: '#292727',
+		backgroundColor: DARK_GRAY,
 		paddingLeft: '4%'
 	},
 	text: {

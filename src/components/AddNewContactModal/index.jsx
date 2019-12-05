@@ -10,6 +10,8 @@ import useUserInputValidation from '../../hooks/userInputValidation';
 import { validateContact } from '../../helpers';
 
 import styles from './styles';
+import { LIGHT_GRAY } from '../../styles/colors';
+import { isVisibleType, cancelHandlerType, submitHandlerType } from '../../types';
 
 const initialState = {
 	name: '',
@@ -49,37 +51,49 @@ const AddNewContactModal = ({ isVisible, cancelHandler, submitHandler }) => {
 						onPress={handleSubmit}
 					/>
 				</View>
+
 				<ThumbnailInput
 					currImage={values.image}
 					inputHandler={(image) => handleChangeText('image', image)}
 					errorMsg={errors.image}
+					contactName={values.name}
 				/>
-				<Input
-					label="Name"
-					placeholder="Enter task name"
-					value={values.name}
-					errorStyle={{ color: 'red' }}
-					errorMessage={errors.name}
-					maxLength={40}
-					onChangeText={(text) => handleChangeText('name', text)}
-					containerStyle={styles.inputContainer}
-				/>
+				<View style={styles.inputBody}>
+					<Input
+						inputStyle={styles.input}
+						placeholder="Name"
+						placeholderTextColor={LIGHT_GRAY}
+						value={values.name}
+						errorStyle={{ color: 'red' }}
+						errorMessage={errors.name}
+						maxLength={40}
+						onChangeText={(text) => handleChangeText('name', text)}
+						inputContainerStyle={styles.inputContainer}
+					/>
 
-				<Input
-					label="Phone Number"
-					placeholder="Enter phone number"
-					value={values.phoneNumber}
-					errorStyle={{ color: 'red' }}
-					errorMessage={errors.phoneNumber}
-					maxLength={100}
-					multiline
-					blurOnSubmit
-					onChangeText={(text) => handleChangeText('phoneNumber', text)}
-					containerStyle={styles.inputContainer}
-				/>
+					<Input
+						inputStyle={styles.input}
+						placeholder="Phone number"
+						placeholderTextColor={LIGHT_GRAY}
+						value={values.phoneNumber}
+						errorStyle={{ color: 'red' }}
+						errorMessage={errors.phoneNumber}
+						maxLength={100}
+						multiline
+						blurOnSubmit
+						onChangeText={(text) => handleChangeText('phoneNumber', text)}
+						inputContainerStyle={styles.inputContainer}
+					/>
+				</View>
 			</SafeAreaView>
 		</Modal>
 	);
+};
+
+AddNewContactModal.propTypes = {
+	isVisible: isVisibleType.isRequired,
+	cancelHandler: cancelHandlerType.isRequired,
+	submitHandler: submitHandlerType.isRequired
 };
 
 export default AddNewContactModal;

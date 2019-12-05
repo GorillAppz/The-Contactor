@@ -8,7 +8,7 @@ export default StyleSheet.create({
 		backgroundColor: 'black',
 		flexDirection: 'row',
 		alignItems: 'center',
-		borderBottomColor: 'gray',
+		borderBottomColor: GRAY,
 		borderBottomWidth: 0.6,
 		padding: 5
 	},

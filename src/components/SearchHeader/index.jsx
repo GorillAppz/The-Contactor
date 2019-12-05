@@ -2,15 +2,15 @@ import React from 'react';
 import { View, Text, Animated, Alert } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 
-import { CRAYOLA } from '../../styles/colors';
+import { CRAYOLA, LIGHT_GRAY } from '../../styles/colors';
 import styles from './styles';
+import { inputHandlerType, numberType, openAddContactModalHandlerType, importContactsHandlerType } from '../../types';
 
 const MAX_HEADER_HEIGHT = 150;
 const MIN_HEADER_HEIGHT = 90;
 const OPACITY_TRIGGER = MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT - 60;
 
 const SearchHeader = ({ inputHandler, scrollY, openAddContactModalHandler, importContactsHandler }) => {
-
 	const headerHeight = scrollY.interpolate({
 		inputRange: [0, MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT],
 		outputRange: [MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT],
@@ -63,8 +63,8 @@ const SearchHeader = ({ inputHandler, scrollY, openAddContactModalHandler, impor
 			<Text style={styles.bigHeader}>Contacts</Text>
 			<Input
 				placeholder="Search"
-				placeholderTextColor="#7a7a7a"
-				leftIcon={{ name: 'search', color: '#7a7a7a' }}
+				placeholderTextColor={LIGHT_GRAY}
+				leftIcon={{ name: 'search', color: LIGHT_GRAY }}
 				inputStyle={styles.input}
 				inputContainerStyle={styles.inputContainer}
 				containerStyle={styles.container}
@@ -74,5 +74,11 @@ const SearchHeader = ({ inputHandler, scrollY, openAddContactModalHandler, impor
 	);
 };
 
+SearchHeader.propTypes = {
+	inputHandler: inputHandlerType.isRequired,
+	scrollY: numberType.isRequired,
+	openAddContactModalHandler: openAddContactModalHandlerType.isRequired,
+	importContactsHandler: importContactsHandlerType.isRequired
+};
 
 export default SearchHeader;

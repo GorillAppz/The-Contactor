@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { DARK_GRAY } from '../../styles/colors';
 
 export default StyleSheet.create({
 	headerContainer: {
@@ -18,7 +19,7 @@ export default StyleSheet.create({
 	},
 	container: {
 		borderBottomWidth: 0,
-		backgroundColor: '#292727',
+		backgroundColor: DARK_GRAY,
 		width: '80%',
 		alignSelf: 'center',
 		borderRadius: 10

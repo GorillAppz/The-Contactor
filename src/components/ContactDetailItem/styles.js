@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { BLUE, GRAY } from '../../styles/colors';
 
 export default StyleSheet.create({
 	container: {
@@ -10,7 +11,7 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderBottomWidth: 0.8,
-		borderBottomColor: '#383838'
+		borderBottomColor: GRAY
 	},
 	buttonsArea: {
 		flexDirection: 'row'
@@ -20,7 +21,7 @@ export default StyleSheet.create({
 		paddingVertical: 8
 	},
 	buttonText: {
-		color: '#268bff',
+		color: BLUE,
 		fontSize: 11,
 		marginTop: 4
 	},
@@ -33,6 +34,6 @@ export default StyleSheet.create({
 		height: 33,
 		width: 33,
 		borderRadius: 50,
-		backgroundColor: '#268bff'
+		backgroundColor: BLUE
 	}
 });

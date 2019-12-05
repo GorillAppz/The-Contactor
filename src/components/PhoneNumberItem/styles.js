@@ -1,14 +1,15 @@
 import { StyleSheet } from 'react-native';
+import { GRAY, BLUE } from '../../styles/colors';
 
 export default StyleSheet.create({
 	phoneNumberArea: {
 		paddingHorizontal: 10,
 		borderBottomWidth: 0.8,
-		borderBottomColor: '#383838',
+		borderBottomColor: GRAY,
 		paddingVertical: 4
 	},
 	phoneNumber: {
-		color: '#268bff'
+		color: BLUE
 	},
 	phoneText: {
 		color: 'white'

@@ -1,14 +1,17 @@
 import { StyleSheet } from 'react-native';
+import { DARK_GRAY, GRAY, LIGHT_GRAY } from '../../styles/colors';
 
 export default StyleSheet.create({
 	modal: {
 		flex: 1,
-		backgroundColor: '#292727',
-		margin: 0
+		margin: 0,
+		backgroundColor: 'black'
 	},
 	container: {
 		flex: 1,
-		display: 'flex'
+		display: 'flex',
+		backgroundColor: DARK_GRAY,
+		height: '70%'
 	},
 	imageInput: {
 		flexGrow: 1
@@ -27,6 +30,17 @@ export default StyleSheet.create({
 		alignSelf: 'center',
 		fontSize: 17,
 		fontWeight: 'bold',
+		color: 'white'
+	},
+	inputContainer: {
+		borderBottomColor: GRAY,
+		marginHorizontal: -8
+	},
+	inputBody: {
+		borderTopWidth: 0.8,
+		borderTopColor: GRAY
+	},
+	input: {
 		color: 'white'
 	}
 });

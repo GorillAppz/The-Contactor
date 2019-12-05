@@ -11,6 +11,7 @@ import { groupContacts } from '../../helpers';
 import styles from './styles';
 import AddNewContactModal from '../AddNewContactModal';
 import EmptyContacts from '../EmptyContacts';
+import { contactsType, UpdateContactsType, boolType } from '../../types';
 
 const ContactList = ({ contacts, updateContacts, isLoading }) => {
 
@@ -86,6 +87,12 @@ const ContactList = ({ contacts, updateContacts, isLoading }) => {
 			/>
 		</View>
 	);
+};
+
+ContactList.propTypes = {
+	contacts: contactsType.isRequired,
+	updateContacts: UpdateContactsType.isRequired,
+	isLoading: boolType.isRequired
 };
 
 export default ContactList;
