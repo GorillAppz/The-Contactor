@@ -7,7 +7,7 @@ const PhoneNumberItem = ({ phoneNumber }) => {
 	const { phone, label } = phoneNumber;
 	return (
 		<View style={styles.phoneNumberArea}>
-			<Text style={styles.phoneText}>{label.length > 0 ? label : 'phone'}</Text>
+			<Text style={styles.phoneText}>{label}</Text>
 			<Text style={styles.phoneNumber}>{phone}</Text>
 		</View>
 	);
