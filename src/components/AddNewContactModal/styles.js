@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { DARK_GRAY, GRAY, LIGHT_GRAY } from '../../styles/colors';
+import { DARK_GRAY, GRAY } from '../../styles/colors';
 
 export default StyleSheet.create({
 	modal: {
@@ -10,8 +10,7 @@ export default StyleSheet.create({
 	container: {
 		flex: 1,
 		display: 'flex',
-		backgroundColor: DARK_GRAY,
-		height: '70%'
+		backgroundColor: DARK_GRAY
 	},
 	imageInput: {
 		flexGrow: 1

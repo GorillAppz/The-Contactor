@@ -12,6 +12,7 @@ import { validateContact } from '../../helpers';
 import styles from './styles';
 import { LIGHT_GRAY } from '../../styles/colors';
 import { isVisibleType, cancelHandlerType, submitHandlerType } from '../../types';
+import { createContact } from '../../services/contactFileService';
 
 const initialState = {
 	name: '',
@@ -19,7 +20,16 @@ const initialState = {
 	image: ''
 };
 
-const AddNewContactModal = ({ isVisible, cancelHandler, submitHandler }) => {
+const AddNewContactModal = ({ isVisible, cancelHandler }) => {
+	const submitHandler = (values) => {
+		const contact = {
+			name: values.name,
+			phoneNumber: values.phoneNumber,
+			image: values.image
+		};
+		createContact(contact);
+		cancelHandler();
+	};
 	const {
 		handleSubmit,
 		handleChangeText,

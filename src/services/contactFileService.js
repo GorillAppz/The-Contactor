@@ -1,8 +1,11 @@
 import * as FileSystem from 'expo-file-system';
+import uuidv4 from 'uuid/v4';
+
 import { getAllPhoneContacts } from './contactExpoService';
 
-const contactDirectory = `${FileSystem.documentDirectory}contacts`;
 
+const contactDirectory = `${FileSystem.documentDirectory}contacts`;
+console.log(contactDirectory);
 const onException = (cb, errorHandler) => {
 	try {
 		return cb();
@@ -18,6 +21,11 @@ export const addContact = async (contact, id) => {
 	await onException(() => FileSystem.writeAsStringAsync(
 		`${contactDirectory}/${id}.json`, JSON.stringify(contact)
 	));
+};
+
+export const createContact = async (contact) => {
+	const id = uuidv4();
+	addContact(contact, id);
 };
 
 export const importContactsFromPhone = async () => {
@@ -82,4 +90,4 @@ export const clearStorage = async () => {
 	return Promise.all(result.forEach(async (fileName) => {
 		await FileSystem.deleteAsync(`${contactDirectory}/${fileName}`);
 	}));
-}
+};
