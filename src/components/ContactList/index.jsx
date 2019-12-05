@@ -84,6 +84,7 @@ const ContactList = ({ contacts, updateContacts, isLoading }) => {
 				isVisible={showAddContactModal}
 				cancelHandler={() => setShowAddContactModal(false)}
 				submitHandler={saveContactHandler}
+				updateContacts={updateContacts}
 			/>
 		</View>
 	);

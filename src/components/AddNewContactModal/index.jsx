@@ -11,7 +11,7 @@ import { validateContact } from '../../helpers';
 
 import styles from './styles';
 import { LIGHT_GRAY } from '../../styles/colors';
-import { isVisibleType, cancelHandlerType, submitHandlerType } from '../../types';
+import { isVisibleType, cancelHandlerType, UpdateContactsType } from '../../types';
 import { createContact } from '../../services/contactFileService';
 
 const initialState = {
@@ -20,7 +20,7 @@ const initialState = {
 	image: ''
 };
 
-const AddNewContactModal = ({ isVisible, cancelHandler }) => {
+const AddNewContactModal = ({ isVisible, cancelHandler, updateContacts }) => {
 	const submitHandler = (values) => {
 		const contact = {
 			name: values.name,
@@ -34,6 +34,7 @@ const AddNewContactModal = ({ isVisible, cancelHandler }) => {
 		};
 		createContact(contact);
 		cancelHandler();
+		updateContacts();
 	};
 	const {
 		handleSubmit,
@@ -108,7 +109,7 @@ const AddNewContactModal = ({ isVisible, cancelHandler }) => {
 AddNewContactModal.propTypes = {
 	isVisible: isVisibleType.isRequired,
 	cancelHandler: cancelHandlerType.isRequired,
-	submitHandler: submitHandlerType.isRequired
+	updateContacts: UpdateContactsType.isRequired
 };
 
 export default AddNewContactModal;
