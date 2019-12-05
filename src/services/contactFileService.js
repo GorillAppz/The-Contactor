@@ -37,19 +37,12 @@ export const importContactsFromPhone = async () => {
 		if (contact.image) {
 			imageUri = contact.image.uri;
 		}
-		let phone = [];
-		if (contact.phoneNumbers) {
-			phone = contact.phoneNumbers.map((phone) => ({
-				phone: phone.digits,
-				label: phone.label
-			}));
-		}
 
 		return {
 			id: contact.id,
 			data: {
 				name: contact.name,
-				phoneNumber: phone,
+				phoneNumber: contact.phoneNumbers[0].digits,
 				image: imageUri
 			}
 		};

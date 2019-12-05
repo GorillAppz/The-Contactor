@@ -41,5 +41,20 @@ export default StyleSheet.create({
 		width: 50,
 		borderRadius: 50,
 		backgroundColor: BLUE
+	},
+	phoneNumberArea: {
+		paddingHorizontal: 10,
+		borderBottomWidth: 0.8,
+		borderBottomColor: GRAY,
+		paddingVertical: 4
+	},
+	phoneNumber: {
+		color: BLUE,
+		fontSize: 15
+	},
+	phoneText: {
+		color: 'white',
+		fontSize: 15,
+		paddingBottom: 4
 	}
 });

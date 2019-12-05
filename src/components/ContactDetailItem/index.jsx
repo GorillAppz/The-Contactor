@@ -1,12 +1,9 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
-import { FlatList } from 'react-native-gesture-handler';
 
-import Text from '../Text';
 import ContactImageThumbnail from '../ContactImageThumbnail/index';
 import styles from './styles';
-import PhoneNumberItem from '../PhoneNumberItem';
 import { contactType } from '../../types';
 
 const ContactDetailItem = ({ contact }) => (
@@ -20,6 +17,14 @@ const ContactDetailItem = ({ contact }) => (
 				fontSize={38}
 			/>
 			<Text style={styles.contactName}>{contact.data.name}</Text>
+			<View style={styles.editButtonContainer}>
+				<Button
+					onPress={() => (console.log("dosmth"))}
+					title="Edit"
+					buttonStyle={{ backgroundColor: 'transparent', marginRight: 10 }}
+					titleStyle={{ color: '#268bff', fontSize: 20, fontWeight: 'bold' }}
+				/>
+			</View>
 			<View style={styles.buttonsArea}>
 				<View style={styles.buttonArea}>
 					<Button
@@ -41,17 +46,9 @@ const ContactDetailItem = ({ contact }) => (
 				</View>
 			</View>
 		</View>
-		<View style={styles.body}>
-			<FlatList
-				data={contact.data.phoneNumber}
-				renderItem={({ item }) => (
-					<PhoneNumberItem phoneNumber={item} />
-				)}
-				ListEmptyComponent={(
-					<Text>This contact has no numbers... add one!</Text>
-				)}
-				keyExtractor={({ phoneNumber, index }) => (`${index}-${phoneNumber}-${index}`)}
-			/>
+		<View style={styles.phoneNumberArea}>
+			<Text style={styles.phoneText}>phone</Text>
+			<Text style={styles.phoneNumber}>{contact.data.phoneNumber}</Text>
 		</View>
 	</View>
 );

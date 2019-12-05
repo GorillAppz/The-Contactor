@@ -14,7 +14,6 @@ import EmptyContacts from '../EmptyContacts';
 import { contactsType, UpdateContactsType, boolType } from '../../types';
 
 const ContactList = ({ contacts, updateContacts, isLoading }) => {
-
 	const [filteredContacts, setFilteredContacts] = React.useState([]);
 	const [scrollY] = React.useState(new Animated.Value(0));
 	const [showAddContactModal, setShowAddContactModal] = React.useState(false);

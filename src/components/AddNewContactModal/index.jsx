@@ -24,12 +24,7 @@ const AddNewContactModal = ({ isVisible, cancelHandler, updateContacts }) => {
 	const submitHandler = (values) => {
 		const contact = {
 			name: values.name,
-			phoneNumber: [
-				{
-					label: 'mobile',
-					phone: values.phoneNumber
-				}
-			],
+			phoneNumber: values.phoneNumber,
 			image: values.image
 		};
 		createContact(contact);
