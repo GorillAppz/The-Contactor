@@ -54,7 +54,7 @@ const ThumbnailInput = ({ currImage, errorMsg, inputHandler }) => {
 
 ThumbnailInput.propTypes = {
 	currImage: stringType.isRequired,
-	errorMsg: stringType.isRequired,
+	errorMsg: stringType,
 	inputHandler: funcType.isRequired
 };
 

@@ -7,7 +7,7 @@ import Text from '../Text';
 import { LIGHT, DARK } from '../../styles/colors';
 import styles from './styles';
 
-const ContactImageThumbnail = ({ uri, name, isSelected }) => {
+const ContactImageThumbnail = ({ uri, name }) => {
 	const withImage = (
 		<Image
 			source={{ uri }}
@@ -37,27 +37,9 @@ const ContactImageThumbnail = ({ uri, name, isSelected }) => {
 		);
 	};
 
-	const itemSelectedImage = (
-		<View>
-			<Text>
-				{':)'}
-			</Text>
-		</View>
-	);
-
-	const thumbnailToRender = () => {
-		if (isSelected) {
-			return itemSelectedImage;
-		}
-		if (uri) {
-			return withImage;
-		}
-		return withoutImage();
-	};
-
 	return (
 		<View style={styles.container}>
-			{thumbnailToRender()}
+			{uri ? withImage : withoutImage()}
 		</View>
 	);
 };

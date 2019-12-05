@@ -7,8 +7,9 @@ import styles from './styles';
 
 const MAX_HEADER_HEIGHT = 150;
 const MIN_HEADER_HEIGHT = 90;
+const OPACITY_TRIGGER = MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT - 60;
 
-const SearchHeader = ({ inputHandler, scrollY, openAddContactModalHandler }) => {
+const SearchHeader = ({ inputHandler, scrollY, openAddContactModalHandler, importContactsHandler }) => {
 
 	const headerHeight = scrollY.interpolate({
 		inputRange: [0, MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT],
@@ -17,17 +18,17 @@ const SearchHeader = ({ inputHandler, scrollY, openAddContactModalHandler }) => 
 	});
 
 	const smallHeaderOpacity = scrollY.interpolate({
-		inputRange: [MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT - 10, MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT],
+		inputRange: [OPACITY_TRIGGER, MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT],
 		outputRange: [0, 1],
 		extrapolate: 'clamp'
 	});
 
-	const importContactsHandler = () => {
+	const _importContactsHandler = () => {
 		Alert.alert(
 			'Importing all contacts from phone',
 			'Are you sure you would like to import ALL contacts from your phone?',
 			[
-				{ text: 'Yes I am!', onPress: () => console.log('accepted') },
+				{ text: 'Yes I am!', onPress: async () => importContactsHandler() },
 				{ text: 'No! Cancel', onPress: () => console.log('canceled') }
 			]
 		);
@@ -44,7 +45,7 @@ const SearchHeader = ({ inputHandler, scrollY, openAddContactModalHandler }) => 
 						size: 30
 					}}
 					buttonStyle={styles.button}
-					onPress={importContactsHandler}
+					onPress={_importContactsHandler}
 				/>
 				<Animated.Text style={{ ...styles.smallHeader, opacity: smallHeaderOpacity }}>
 					Contacts

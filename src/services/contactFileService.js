@@ -20,7 +20,7 @@ export const addContact = async (contact, id) => {
 	));
 };
 
-export const contactsInit = async () => {
+export const importContactsFromPhone = async () => {
 	const contacts = await getAllPhoneContacts();
 	const contactsWithDefinedName = contacts.filter((contact) => contact.name !== undefined);
 	const nonEmialContacts = contactsWithDefinedName.filter((contact) => contact.phoneNumbers);
@@ -74,3 +74,12 @@ export const getAllContacts = async () => {
 		data: JSON.parse(await loadContact(fileName))
 	})));
 };
+
+// used for development, to delete local storage
+export const clearStorage = async () => {
+	await setupDirectory();
+	const result = await onException(() => FileSystem.readDirectoryAsync(contactDirectory));
+	return Promise.all(result.forEach(async (fileName) => {
+		await FileSystem.deleteAsync(`${contactDirectory}/${fileName}`);
+	}));
+}

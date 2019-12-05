@@ -1,6 +1,6 @@
 import React from 'react';
 
-const userInputValidation = (initialState, validate) => {
+const userInputValidation = (initialState, validate, submitHandler) => {
 	const [values, setValues] = React.useState(initialState);
 	const [errors, setErrors] = React.useState({});
 	const [isSubmitting, setSubmitting] = React.useState(false);
@@ -9,7 +9,7 @@ const userInputValidation = (initialState, validate) => {
 		if (isSubmitting) {
 			const noErrors = Object.keys(errors).length === 0;
 			if (noErrors) {
-				console.log('submitted!');
+				submitHandler(values);
 				setSubmitting(false);
 			} else {
 				setSubmitting(false);
@@ -30,7 +30,12 @@ const userInputValidation = (initialState, validate) => {
 		setErrors(validationErrors);
 	};
 
-	return { handleSubmit, handleChangeText, values, errors, isSubmitting };
+	const resetFields = () => {
+		setValues(initialState);
+		setErrors({});
+	};
+
+	return { handleSubmit, handleChangeText, values, errors, isSubmitting, resetFields };
 };
 
 export default userInputValidation;

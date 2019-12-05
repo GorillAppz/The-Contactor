@@ -4,9 +4,12 @@ import { Button, Input } from 'react-native-elements';
 import { SafeAreaView, View } from 'react-native';
 
 import Text from '../Text';
+import ThumbnailInput from '../ThumbnailInput';
+
+import useUserInputValidation from '../../hooks/userInputValidation';
+import { validateContact } from '../../helpers';
+
 import styles from './styles';
-import userInputValidation from '../../hooks/userInputValidation';
-import validateContact from '../../helpers';
 
 const initialState = {
 	name: '',
@@ -14,18 +17,22 @@ const initialState = {
 	image: ''
 };
 
-const AddNewContactModal = ({ isVisible, cancelHandler }) => {
+const AddNewContactModal = ({ isVisible, cancelHandler, submitHandler }) => {
 	const {
 		handleSubmit,
 		handleChangeText,
 		values,
 		errors,
-		isSubmitting
-	} = userInputValidation(initialState, validateContact);
+		isSubmitting,
+		resetFields
+	} = useUserInputValidation(initialState, validateContact, submitHandler);
+
 	return (
 		<Modal
 			isVisible={isVisible}
 			style={styles.modal}
+			onModalShow={() => resetFields()}
+			onModalHide={() => resetFields()}
 		>
 			<SafeAreaView style={styles.container}>
 				<View style={styles.options}>
@@ -39,9 +46,14 @@ const AddNewContactModal = ({ isVisible, cancelHandler }) => {
 						type="clear"
 						title="Done"
 						disabled={isSubmitting}
-						onPress={() => handleSubmit()}
+						onPress={handleSubmit}
 					/>
 				</View>
+				<ThumbnailInput
+					currImage={values.image}
+					inputHandler={(image) => handleChangeText('image', image)}
+					errorMsg={errors.image}
+				/>
 				<Input
 					label="Name"
 					placeholder="Enter task name"

@@ -1,16 +1,18 @@
 import React from 'react';
 
-import { SectionList, View, Animated } from 'react-native';
+import { SectionList, View, Animated, ActivityIndicator } from 'react-native';
 
 import ContactListItem from '../ContactListItem';
 import SearchHeader from '../SearchHeader';
 import ContactListSectionHeader from '../ContactListSectionHeader';
 
+import { importContactsFromPhone } from '../../services/contactFileService';
 import { groupContacts } from '../../helpers';
 import styles from './styles';
 import AddNewContactModal from '../AddNewContactModal';
+import EmptyContacts from '../EmptyContacts';
 
-const ContactList = ({ contacts, updateContacts }) => {
+const ContactList = ({ contacts, updateContacts, isLoading }) => {
 
 	const [filteredContacts, setFilteredContacts] = React.useState([]);
 	const [scrollY] = React.useState(new Animated.Value(0));
@@ -31,10 +33,19 @@ const ContactList = ({ contacts, updateContacts }) => {
 		setFilteredContacts(groupContacts(contactsFilteredBySearch));
 	};
 
-	const addSuccessHandler = () => {
+	const importContactsHandler = async () => {
+		await importContactsFromPhone();
+		await updateContacts();
+	};
+
+	const saveContactHandler = (contact) => {
 		updateContacts();
 		setShowAddContactModal(false);
 	};
+
+	const renderSectionHeader = ({ section }) => <ContactListSectionHeader title={section.title} />;
+	const renderItem = ({ item }) => (<ContactListItem contact={item} />);
+	const keyExtractor = (contact) => contact.id;
 
 	return (
 		<View style={styles.container}>
@@ -42,26 +53,36 @@ const ContactList = ({ contacts, updateContacts }) => {
 				inputHandler={(input) => searchInputHandler(input)}
 				scrollY={scrollY}
 				openAddContactModalHandler={() => setShowAddContactModal(true)}
+				importContactsHandler={importContactsHandler}
 			/>
-			<SectionList
-				sections={filteredContacts}
-				stickySectionHeadersEnabled
-				renderSectionHeader={({ section }) => <ContactListSectionHeader title={section.title} />}
-				renderItem={({ item }) => (
-					<ContactListItem contact={item} />
-				)}
-				keyExtractor={((contact) => contact.id)}
-				onScroll={Animated.event(
-					[{ nativeEvent: { contentOffset: { y: scrollY } } }]
-				)}
-				scrollEventThrottle={16}
-				disableVirtualization
-				ListEmptyComponent={<EmptyContacts />}
-			/>
+			{
+				isLoading
+					? (
+						<View style={styles.loadingContainer}>
+							<ActivityIndicator size="large" />
+						</View>
+					)
+					: (
+						<SectionList
+							sections={filteredContacts}
+							stickySectionHeadersEnabled
+							renderSectionHeader={renderSectionHeader}
+							renderItem={renderItem}
+							keyExtractor={keyExtractor}
+							onScroll={Animated.event(
+								[{ nativeEvent: { contentOffset: { y: scrollY } } }]
+							)}
+							scrollEventThrottle={16}
+							disableVirtualization
+							ListEmptyComponent={<EmptyContacts />}
+						/>
+					)
+			}
+
 			<AddNewContactModal
 				isVisible={showAddContactModal}
 				cancelHandler={() => setShowAddContactModal(false)}
-				updateContacts={addSuccessHandler}
+				submitHandler={saveContactHandler}
 			/>
 		</View>
 	);
