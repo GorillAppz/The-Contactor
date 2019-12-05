@@ -11,8 +11,7 @@ export default StyleSheet.create({
 	image: {
 		width: 200,
 		height: 200,
-		marginBottom: 20,
-		borderRadius: 10
+		borderRadius: 100
 	},
 	label: {
 		fontSize: 20,

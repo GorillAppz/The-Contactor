@@ -19,19 +19,8 @@ const ThumbnailInput = ({ currImage, errorMsg, inputHandler, contactName }) => {
 
 	return (
 		<View style={styles.container}>
+			<ContactImageThumbnail uri={currImage} width={200} height={200} fontSize={50} name={contactName} />
 			<Text style={styles.errorMsg}>{errorMsg}</Text>
-			{
-				currImage.length
-					? (
-						<Image
-							style={styles.image}
-							source={currImage.length
-								? { uri: currImage }
-								: null}
-						/>
-					)
-					: <ContactImageThumbnail width={150} height={150} fontSize={40} name={contactName} />
-			}
 			<View style={styles.buttonsContainer}>
 				<Button
 					buttonStyle={styles.button}
