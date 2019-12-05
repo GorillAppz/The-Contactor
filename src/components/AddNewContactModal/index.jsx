@@ -1,13 +1,27 @@
 import React from 'react';
 import Modal from 'react-native-modal';
-import { Button } from 'react-native-elements';
+import { Button, Input } from 'react-native-elements';
 import { SafeAreaView, View } from 'react-native';
 
 import Text from '../Text';
 import styles from './styles';
-import ContactInputForm from '../ContactInputForm';
+import userInputValidation from '../../hooks/userInputValidation';
+import validateContact from '../../helpers';
+
+const initialState = {
+	name: '',
+	phoneNumber: '',
+	image: ''
+};
 
 const AddNewContactModal = ({ isVisible, cancelHandler }) => {
+	const {
+		handleSubmit,
+		handleChangeText,
+		values,
+		errors,
+		isSubmitting
+	} = userInputValidation(initialState, validateContact);
 	return (
 		<Modal
 			isVisible={isVisible}
@@ -24,16 +38,33 @@ const AddNewContactModal = ({ isVisible, cancelHandler }) => {
 					<Button
 						type="clear"
 						title="Done"
-						onPress={() => submitForm}
+						disabled={isSubmitting}
+						onPress={() => handleSubmit()}
 					/>
 				</View>
-				<View style={styles.body}>
-					<ContactInputForm
-						isVisible={isVisible}
-						cancelHandler={cancelHandler}
-						submitForm={() => submitForm}
-					/>
-				</View>
+				<Input
+					label="Name"
+					placeholder="Enter task name"
+					value={values.name}
+					errorStyle={{ color: 'red' }}
+					errorMessage={errors.name}
+					maxLength={40}
+					onChangeText={(text) => handleChangeText('name', text)}
+					containerStyle={styles.inputContainer}
+				/>
+
+				<Input
+					label="Phone Number"
+					placeholder="Enter phone number"
+					value={values.phoneNumber}
+					errorStyle={{ color: 'red' }}
+					errorMessage={errors.phoneNumber}
+					maxLength={100}
+					multiline
+					blurOnSubmit
+					onChangeText={(text) => handleChangeText('phoneNumber', text)}
+					containerStyle={styles.inputContainer}
+				/>
 			</SafeAreaView>
 		</Modal>
 	);

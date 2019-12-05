@@ -6,31 +6,10 @@ import { Input, Button } from 'react-native-elements';
 import styles from './styles';
 import Text from '../Text';
 
-const initState = {
-	fields: {
-		name: '',
-		phoneNumber: '',
-		image: ''
-	},
-	errors: {
-		name: '',
-		phoneNumber: '',
-		image: ''
-	}
-};
-
 class ContactInputForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { ...initState };
-	}
-
-	submitForm() {
-		console.log('imhere');
-		const { submitHandler } = this.props;
-		const { fields } = this.state;
-		if (!this.validateForm()) { return; }
-		submitHandler(fields);
 	}
 
 	validateForm() {

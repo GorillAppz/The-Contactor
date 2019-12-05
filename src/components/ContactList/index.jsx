@@ -5,11 +5,15 @@ import { SectionList, View, Animated } from 'react-native';
 import ContactListItem from '../ContactListItem';
 import SearchHeader from '../SearchHeader';
 import ContactListSectionHeader from '../ContactListSectionHeader';
+<<<<<<< HEAD
 import ContactInputForm from '../ContactInputForm';
 import EmptyContacts from '../EmptyContacts';
+=======
+>>>>>>> 98349c118aac82fb9e7dd503aa101f967f8d508d
 
-import { groupContacts } from '../helpers';
+import { groupContacts } from '../../helpers';
 import styles from './styles';
+import AddNewContactModal from '../AddNewContactModal';
 
 const ContactList = ({ contacts, updateContacts }) => {
 
@@ -64,6 +68,10 @@ const ContactList = ({ contacts, updateContacts }) => {
 				cancelHandler={() => setShowAddContactModal(false)}
 				updateContacts={addSuccessHandler}
 			/>
+<<<<<<< HEAD
+=======
+			<AddNewContactModal isVisible={showAddContactModal} cancelHandler={() => setShowAddContactModal(false)} />
+>>>>>>> 98349c118aac82fb9e7dd503aa101f967f8d508d
 		</View>
 	);
 };
