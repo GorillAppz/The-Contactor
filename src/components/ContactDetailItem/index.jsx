@@ -15,29 +15,29 @@ const ContactDetailItem = ({ contact }) => (
 			<ContactImageThumbnail
 				uri={contact.data.image}
 				name={contact.data.name}
-				height={85}
-				width={85}
-				fontSize={30}
+				height={100}
+				width={100}
+				fontSize={38}
 			/>
 			<Text style={styles.contactName}>{contact.data.name}</Text>
 			<View style={styles.buttonsArea}>
 				<View style={styles.buttonArea}>
 					<Button
 						icon={(
-							<Icon type="font-awesome" name="comment" size={17} color="white" />
+							<Icon type="font-awesome" name="comment" size={25} color="white" />
 						)}
 						buttonStyle={styles.buttons}
 					/>
-					<Text style={styles.buttonText}>message</Text>
+					<Text style={styles.messageButtonText}>message</Text>
 				</View>
 				<View style={styles.buttonArea}>
 					<Button
 						icon={(
-							<Icon type="font-awesome" name="phone" size={20} color="white" />
+							<Icon type="font-awesome" name="phone" size={30} color="white" />
 						)}
 						buttonStyle={styles.buttons}
 					/>
-					<Text style={styles.buttonText}>phone</Text>
+					<Text style={styles.phoneButtonText}>phone</Text>
 				</View>
 			</View>
 		</View>

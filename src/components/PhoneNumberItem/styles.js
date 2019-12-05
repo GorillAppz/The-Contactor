@@ -9,9 +9,11 @@ export default StyleSheet.create({
 		paddingVertical: 4
 	},
 	phoneNumber: {
-		color: BLUE
+		color: BLUE,
+		fontSize: 15
 	},
 	phoneText: {
-		color: 'white'
+		color: 'white',
+		fontSize: 15
 	}
 });

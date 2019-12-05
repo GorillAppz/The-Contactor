@@ -20,19 +20,25 @@ export default StyleSheet.create({
 		paddingHorizontal: 35,
 		paddingVertical: 8
 	},
-	buttonText: {
+	messageButtonText: {
 		color: BLUE,
-		fontSize: 11,
+		fontSize: 15,
 		marginTop: 4
 	},
+	phoneButtonText: {
+		color: BLUE,
+		fontSize: 15,
+		marginTop: 4,
+		paddingHorizontal: 5
+	},
 	contactName: {
-		fontSize: 25,
+		fontSize: 32,
 		fontWeight: 'bold',
 		color: 'white'
 	},
 	buttons: {
-		height: 33,
-		width: 33,
+		height: 50,
+		width: 50,
 		borderRadius: 50,
 		backgroundColor: BLUE
 	}

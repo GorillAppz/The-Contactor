@@ -30,7 +30,7 @@ const ThumbnailInput = ({ currImage, errorMsg, inputHandler, contactName }) => {
 								: null}
 						/>
 					)
-					: <ContactImageThumbnail width={150} height={150} fontSize={30} name={contactName} />
+					: <ContactImageThumbnail width={150} height={150} fontSize={40} name={contactName} />
 			}
 			<View style={styles.buttonsContainer}>
 				<Button
