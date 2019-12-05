@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Animated } from 'react-native';
+import { View, Text, Animated, Alert } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 
 import { CRAYOLA } from '../../styles/colors';
@@ -22,19 +22,33 @@ const SearchHeader = ({ inputHandler, scrollY, openAddContactModalHandler }) => 
 		extrapolate: 'clamp'
 	});
 
+	const importContactsHandler = () => {
+		Alert.alert(
+			'Importing all contacts from phone',
+			'Are you sure you would like to import ALL contacts from your phone?',
+			[
+				{ text: 'Yes I am!', onPress: () => console.log('accepted') },
+				{ text: 'No! Cancel', onPress: () => console.log('canceled') }
+			]
+		);
+	};
+
 	return (
 		<Animated.View style={{ ...styles.headerContainer, height: headerHeight }}>
 			<View style={styles.smallHeaderContainer}>
 				<Button
 					icon={{
-						name: 'question-circle',
+						name: 'book',
 						type: 'font-awesome',
 						color: CRAYOLA,
 						size: 30
 					}}
 					buttonStyle={styles.button}
+					onPress={importContactsHandler}
 				/>
-				<Animated.Text style={{ ...styles.smallHeader, opacity: smallHeaderOpacity }}>Contacts</Animated.Text>
+				<Animated.Text style={{ ...styles.smallHeader, opacity: smallHeaderOpacity }}>
+					Contacts
+				</Animated.Text>
 				<Button
 					icon={{
 						name: 'add',

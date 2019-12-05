@@ -6,11 +6,12 @@ import ContactListItem from '../ContactListItem';
 import SearchHeader from '../SearchHeader';
 import ContactListSectionHeader from '../ContactListSectionHeader';
 import ContactInputForm from '../ContactInputForm';
+import EmptyContacts from '../EmptyContacts';
 
 import { groupContacts } from '../helpers';
 import styles from './styles';
 
-const ContactList = ({ contacts }) => {
+const ContactList = ({ contacts, updateContacts }) => {
 
 	const [filteredContacts, setFilteredContacts] = React.useState([]);
 	const [scrollY] = React.useState(new Animated.Value(0));
@@ -22,7 +23,7 @@ const ContactList = ({ contacts }) => {
 		}
 	}, [contacts]);
 
-	const inputHandler = (input) => {
+	const searchInputHandler = (input) => {
 		const contactsFilteredBySearch = contacts.filter(({ data }) => {
 			const lowerCaseName = data.name.toLowerCase();
 			const lowerCaseText = input.toLowerCase();
@@ -31,10 +32,15 @@ const ContactList = ({ contacts }) => {
 		setFilteredContacts(groupContacts(contactsFilteredBySearch));
 	};
 
+	const addSuccessHandler = () => {
+		updateContacts();
+		setShowAddContactModal(false);
+	};
+
 	return (
 		<View style={styles.container}>
 			<SearchHeader
-				inputHandler={(input) => inputHandler(input)}
+				inputHandler={(input) => searchInputHandler(input)}
 				scrollY={scrollY}
 				openAddContactModalHandler={() => setShowAddContactModal(true)}
 			/>
@@ -51,8 +57,13 @@ const ContactList = ({ contacts }) => {
 				)}
 				scrollEventThrottle={16}
 				disableVirtualization
+				ListEmptyComponent={<EmptyContacts />}
 			/>
-			<ContactInputForm isVisible={showAddContactModal} cancelHandler={() => setShowAddContactModal(false)} />
+			<ContactInputForm
+				isVisible={showAddContactModal}
+				cancelHandler={() => setShowAddContactModal(false)}
+				updateContacts={addSuccessHandler}
+			/>
 		</View>
 	);
 };

@@ -47,6 +47,7 @@ const ContactDetailItem = ({ contact }) => {
 					ListEmptyComponent={(
 						<Text>This contact has no numbers... add one!</Text>
 					)}
+					keyExtractor={({ phoneNumber, index }) => (`${index}-${phoneNumber}-${index}`)}
 				/>
 			</View>
 		</View>
