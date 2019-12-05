@@ -5,10 +5,10 @@ import { SectionList, View, Animated } from 'react-native';
 import ContactListItem from '../ContactListItem';
 import SearchHeader from '../SearchHeader';
 import ContactListSectionHeader from '../ContactListSectionHeader';
-import ContactInputForm from '../ContactInputForm';
 
-import { groupContacts } from '../helpers';
+import { groupContacts } from '../../helpers';
 import styles from './styles';
+import AddNewContactModal from '../AddNewContactModal';
 
 const ContactList = ({ contacts }) => {
 
@@ -52,7 +52,7 @@ const ContactList = ({ contacts }) => {
 				scrollEventThrottle={16}
 				disableVirtualization
 			/>
-			<ContactInputForm isVisible={showAddContactModal} cancelHandler={() => setShowAddContactModal(false)} />
+			<AddNewContactModal isVisible={showAddContactModal} cancelHandler={() => setShowAddContactModal(false)} />
 		</View>
 	);
 };

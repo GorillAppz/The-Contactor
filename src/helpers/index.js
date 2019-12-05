@@ -26,3 +26,23 @@ export const groupContacts = (contacts) => {
 
 	return groupedArray;
 };
+
+export const validateContact = (values) => {
+	const errors = {};
+
+	if (!values.name) {
+		errors.name = 'Name is required!';
+	} else if (values.name.length < 3) {
+		errors.name = 'Name must be atleast 3 characters!';
+	}
+
+	if (!values.phoneNumber) {
+		errors.phoneNumber = 'Phone number is required!';
+	}
+
+	if (!values.image) {
+		errors.image = 'Please insert your image';
+	}
+
+	return errors;
+};
