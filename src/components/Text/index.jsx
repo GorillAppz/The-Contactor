@@ -11,7 +11,7 @@ const CustomText = ({ children, style, ...props }) => (
 );
 
 CustomText.propTypes = {
-	children: nodeType.isRequired,
+	children: nodeType,
 	style: oneOfTypeType([objectType, arrayType])
 };
 export default CustomText;
