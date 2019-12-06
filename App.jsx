@@ -5,7 +5,6 @@ import AppContainer from './src/routes';
 import ContactsContext from './src/contexts/contactsContext';
 
 const App = () => {
-
 	const [contacts, setContacts] = React.useState({ data: [], isLoading: false });
 	const providerValue = React.useMemo(() => ({ contacts, setContacts }), [contacts, setContacts]);
 
@@ -14,6 +13,6 @@ const App = () => {
 			<AppContainer />
 		</ContactsContext.Provider>
 	);
-}
+};
 
 export default App;

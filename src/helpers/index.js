@@ -47,4 +47,4 @@ export const updateAndGetContactList = async () => {
 	const contacts = await getAllContacts();
 	const sortedContacts = contacts.sort((a, b) => ((a.data.name > b.data.name) ? 1 : -1));
 	return sortedContacts;
-}
+};

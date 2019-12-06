@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import * as FileSystem from 'expo-file-system';
 import uuidv4 from 'uuid/v4';
 
@@ -12,7 +13,6 @@ const onException = (cb, errorHandler) => {
 		if (errorHandler) {
 			return errorHandler(err);
 		}
-		console.error(err);
 	}
 };
 

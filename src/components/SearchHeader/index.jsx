@@ -4,10 +4,10 @@ import { Input, Button } from 'react-native-elements';
 
 import { CRAYOLA, LIGHT_GRAY } from '../../styles/colors';
 import styles from './styles';
-import { inputHandlerType, numberType, openAddContactModalHandlerType, importContactsHandlerType } from '../../types';
 import ContactsContext from '../../contexts/contactsContext';
 import { importContactsFromPhone, clearStorage } from '../../services/contactFileService';
 import { updateAndGetContactList } from '../../helpers';
+import { funcType, numberType } from '../../types';
 
 
 const MAX_HEADER_HEIGHT = 150;
@@ -118,11 +118,10 @@ const SearchHeader = ({ inputHandler, scrollY, openAddContactModalHandler }) => 
 	);
 };
 
-// SearchHeader.propTypes = {
-// 	inputHandler: inputHandlerType.isRequired,
-// 	scrollY: numberType.isRequired,
-// 	openAddContactModalHandler: openAddContactModalHandlerType.isRequired,
-// 	importContactsHandler: importContactsHandlerType.isRequired
-// };
+SearchHeader.propTypes = {
+	inputHandler: funcType.isRequired,
+	scrollY: numberType.isRequired,
+	openAddContactModalHandler: funcType.isRequired
+};
 
 export default SearchHeader;

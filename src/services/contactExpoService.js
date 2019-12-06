@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import * as Contacts from 'expo-contacts';
 import * as Permissions from 'expo-permissions';
 
