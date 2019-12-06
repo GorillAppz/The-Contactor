@@ -5,12 +5,17 @@ import { Input, Button } from 'react-native-elements';
 import { CRAYOLA, LIGHT_GRAY } from '../../styles/colors';
 import styles from './styles';
 import { inputHandlerType, numberType, openAddContactModalHandlerType, importContactsHandlerType } from '../../types';
+import ContactsContext from '../../contexts/contactsContext';
+import { importContactsFromPhone } from '../../services/contactFileService'
+import { updateAndGetContactList } from '../../helpers';
 
 const MAX_HEADER_HEIGHT = 150;
 const MIN_HEADER_HEIGHT = 90;
 const OPACITY_TRIGGER = MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT - 60;
 
-const SearchHeader = ({ inputHandler, scrollY, openAddContactModalHandler, importContactsHandler }) => {
+const SearchHeader = ({ inputHandler, scrollY, openAddContactModalHandler }) => {
+	const { setContacts } = React.useContext(ContactsContext);
+
 	const headerHeight = scrollY.interpolate({
 		inputRange: [0, MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT],
 		outputRange: [MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT],
@@ -23,15 +28,25 @@ const SearchHeader = ({ inputHandler, scrollY, openAddContactModalHandler, impor
 		extrapolate: 'clamp'
 	});
 
-	const _importContactsHandler = () => {
+	const importContactsHandler = async () => {
+		const importAndRefresh = async () => {
+			await importContactsFromPhone();
+			setContacts({ isLoading: true, data: [] });
+			const refreshedContacts = await updateAndGetContactList();
+			setContacts({ isLoading: false, data: refreshedContacts });
+		};
+
 		Alert.alert(
 			'Importing all contacts from phone',
 			'Are you sure you would like to import ALL contacts from your phone?',
 			[
-				{ text: 'Yes I am!', onPress: async () => importContactsHandler() },
-				{ text: 'No! Cancel', onPress: () => console.log('canceled') }
+				{ text: 'Yes I am!', onPress: async () => importAndRefresh() },
+				{ text: 'No! Cancel' }
 			]
 		);
+
+		// await importContactsFromPhone();
+		// await updateContacts();
 	};
 
 	return (
@@ -45,7 +60,7 @@ const SearchHeader = ({ inputHandler, scrollY, openAddContactModalHandler, impor
 						size: 30
 					}}
 					buttonStyle={styles.button}
-					onPress={_importContactsHandler}
+					onPress={importContactsHandler}
 				/>
 				<Animated.Text style={{ ...styles.smallHeader, opacity: smallHeaderOpacity }}>
 					Contacts
@@ -74,11 +89,11 @@ const SearchHeader = ({ inputHandler, scrollY, openAddContactModalHandler, impor
 	);
 };
 
-SearchHeader.propTypes = {
-	inputHandler: inputHandlerType.isRequired,
-	scrollY: numberType.isRequired,
-	openAddContactModalHandler: openAddContactModalHandlerType.isRequired,
-	importContactsHandler: importContactsHandlerType.isRequired
-};
+// SearchHeader.propTypes = {
+// 	inputHandler: inputHandlerType.isRequired,
+// 	scrollY: numberType.isRequired,
+// 	openAddContactModalHandler: openAddContactModalHandlerType.isRequired,
+// 	importContactsHandler: importContactsHandlerType.isRequired
+// };
 
 export default SearchHeader;

@@ -1,5 +1,8 @@
-export const isNumber = (char) => !Number.isNaN(char - parseFloat(char));
+import { getAllContacts } from '../services/contactFileService';
 
+import { clearStorage } from '../services/contactFileService';
+
+const isNumber = (char) => !Number.isNaN(char - parseFloat(char));
 
 export const groupContacts = (contacts) => {
 	const groupedObj = contacts.reduce((obj, contact) => {
@@ -19,9 +22,7 @@ export const groupContacts = (contacts) => {
 		return newObj;
 	}, {});
 
-	const groupedArray = Object.keys(groupedObj).map((key) => ({ title: key, data: [...groupedObj[key]] }));
-
-	return groupedArray;
+	return Object.keys(groupedObj).map((key) => ({ title: key, data: [...groupedObj[key]] }));
 };
 
 export const validateContact = (values) => {
@@ -43,3 +44,11 @@ export const validateContact = (values) => {
 
 	return errors;
 };
+
+export const updateAndGetContactList = async () => {
+	const contacts = await getAllContacts();
+	const sortedContacts = contacts.sort((a, b) => ((a.data.name > b.data.name) ? 1 : -1));
+	return sortedContacts;
+	// comment above and uncomment below to clearStorage
+	// await clearStorage();
+}

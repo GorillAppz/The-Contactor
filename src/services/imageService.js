@@ -9,9 +9,10 @@ export const selectFromCameraRoll = async () => {
 	await getPermission([Permissions.CAMERA_ROLL]);
 	const result = await ImagePicker.launchImageLibraryAsync({
 		mediaTypes: ImagePicker.MediaTypeOptions.Images,
-		quality: 0.8,
+		quality: 0.1,
 		base64: true,
-		aspect: [16, 9]
+		allowsEditing: true,
+		aspect: [1, 1]
 	});
 
 	if (result.cancelled) { return ''; }
@@ -22,9 +23,10 @@ export const takePhoto = async () => {
 	await getPermission([Permissions.CAMERA, Permissions.CAMERA_ROLL]);
 	const result = await ImagePicker.launchCameraAsync({
 		mediaTypes: ImagePicker.MediaTypeOptions.Images,
-		quality: 0.8,
+		quality: 0.1,
 		base64: true,
-		aspect: [16, 9]
+		allowsEditing: true,
+		aspect: [1, 1]
 	});
 
 	if (result.cancelled) { return ''; }

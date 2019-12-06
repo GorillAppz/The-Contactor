@@ -56,8 +56,8 @@ const ContactDetailItem = ({ contact }) => (
 	</View>
 );
 
-ContactDetailItem.propTypes = {
-	contact: contactType
-};
+// ContactDetailItem.propTypes = {
+// 	contact: contactType
+// };
 
 export default ContactDetailItem;

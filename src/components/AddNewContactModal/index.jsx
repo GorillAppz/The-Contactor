@@ -7,12 +7,13 @@ import Text from '../Text';
 import ThumbnailInput from '../ThumbnailInput';
 
 import useUserInputValidation from '../../hooks/userInputValidation';
-import { validateContact } from '../../helpers';
+import { validateContact, updateAndGetContactList } from '../../helpers';
 
 import styles from './styles';
 import { LIGHT_GRAY } from '../../styles/colors';
-import { isVisibleType, cancelHandlerType, UpdateContactsType } from '../../types';
+
 import { createContact } from '../../services/contactFileService';
+import ContactsContext from '../../contexts/contactsContext';
 
 const initialState = {
 	name: '',
@@ -20,8 +21,10 @@ const initialState = {
 	image: ''
 };
 
-const AddNewContactModal = ({ isVisible, cancelHandler, updateContacts }) => {
-	const submitHandler = (values) => {
+const AddNewContactModal = ({ isVisible, closeModalHandler }) => {
+	const { setContacts } = React.useContext(ContactsContext);
+
+	const submitHandler = async (values) => {
 		const contact = {
 			name: values.name,
 			phoneNumber: [
@@ -32,10 +35,12 @@ const AddNewContactModal = ({ isVisible, cancelHandler, updateContacts }) => {
 			],
 			image: values.image
 		};
-		createContact(contact);
-		cancelHandler();
-		updateContacts();
+		await createContact(contact);
+		const refreshedContacts = await updateAndGetContactList();
+		setContacts({ data: refreshedContacts, isLoading: false });
+		closeModalHandler();
 	};
+
 	const {
 		handleSubmit,
 		handleChangeText,
@@ -57,7 +62,7 @@ const AddNewContactModal = ({ isVisible, cancelHandler, updateContacts }) => {
 					<Button
 						type="clear"
 						title="Cancel"
-						onPress={cancelHandler}
+						onPress={closeModalHandler}
 					/>
 					<Text style={styles.headerText}>New Contact</Text>
 					<Button
@@ -106,10 +111,8 @@ const AddNewContactModal = ({ isVisible, cancelHandler, updateContacts }) => {
 	);
 };
 
-AddNewContactModal.propTypes = {
-	isVisible: isVisibleType.isRequired,
-	cancelHandler: cancelHandlerType.isRequired,
-	updateContacts: UpdateContactsType.isRequired
-};
+// AddNewContactModal.propTypes = {
+// 	isVisible: isVisibleType.isRequired
+// };
 
 export default AddNewContactModal;

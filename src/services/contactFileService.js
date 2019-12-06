@@ -5,7 +5,6 @@ import { getAllPhoneContacts } from './contactExpoService';
 
 
 const contactDirectory = `${FileSystem.documentDirectory}contacts`;
-console.log(contactDirectory);
 const onException = (cb, errorHandler) => {
 	try {
 		return cb();
@@ -72,9 +71,6 @@ export const loadContact = async (fileName) => (
 export const getAllContacts = async () => {
 	// Check if directory exists
 	await setupDirectory();
-	// delete broken file, uncomment and change file name
-	// await FileSystem.deleteAsync(`${contactDirectory}/8513C88F-1EFA-49CD-B061-9F49F8816562.json`)
-
 
 	const result = await onException(() => FileSystem.readDirectoryAsync(contactDirectory));
 	return Promise.all(result.map(async (fileName) => ({
