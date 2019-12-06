@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 
 const { shape, number, string, bool, arrayOf, func, node, oneOfType, object, array } = PropTypes;
 
-export const idType = shape({
-	id: string.isRequired
-});
+export const idType = string.isRequired;
+
 
 export const dataType = shape({
 	image: string.isRequired,
