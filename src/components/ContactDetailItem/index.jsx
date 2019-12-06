@@ -8,7 +8,7 @@ import ContactImageThumbnail from '../ContactImageThumbnail/index';
 import styles from './styles';
 import AddNewContactModal from '../AddNewContactModal/index';
 import contactsContext from '../../contexts/contactsContext';
-import { objectType } from '../../types';
+import { stringType } from '../../types';
 
 const emptyContact = {
 	data: {
@@ -85,7 +85,7 @@ const ContactDetailItem = ({ contactId }) => {
 };
 
 ContactDetailItem.propTypes = {
-	contactId: objectType.isRequired
+	contactId: stringType.isRequired
 };
 
 export default ContactDetailItem;
