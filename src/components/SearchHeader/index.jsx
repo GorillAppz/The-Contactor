@@ -6,8 +6,9 @@ import { CRAYOLA, LIGHT_GRAY } from '../../styles/colors';
 import styles from './styles';
 import { inputHandlerType, numberType, openAddContactModalHandlerType, importContactsHandlerType } from '../../types';
 import ContactsContext from '../../contexts/contactsContext';
-import { importContactsFromPhone } from '../../services/contactFileService'
+import { importContactsFromPhone, clearStorage } from '../../services/contactFileService';
 import { updateAndGetContactList } from '../../helpers';
+
 
 const MAX_HEADER_HEIGHT = 150;
 const MIN_HEADER_HEIGHT = 90;
@@ -44,24 +45,52 @@ const SearchHeader = ({ inputHandler, scrollY, openAddContactModalHandler }) => 
 				{ text: 'No! Cancel' }
 			]
 		);
+	};
 
-		// await importContactsFromPhone();
-		// await updateContacts();
+	const clearAllContactsHandler = async () => {
+		const clearAllAndRefresh = async () => {
+			await clearStorage();
+			setContacts({ isLoading: true, data: [] });
+			const refreshedContacts = await updateAndGetContactList();
+			setContacts({ isLoading: false, data: refreshedContacts });
+		};
+
+		Alert.alert(
+			'Clearing all contacts',
+			'Are you sure you would like to clear ALL contacts (only in app, not phone)',
+			[
+				{ text: 'Yes I am!', onPress: async () => clearAllAndRefresh() },
+				{ text: 'No! Cancel' }
+			]
+		);
 	};
 
 	return (
 		<Animated.View style={{ ...styles.headerContainer, height: headerHeight }}>
 			<View style={styles.smallHeaderContainer}>
-				<Button
-					icon={{
-						name: 'book',
-						type: 'font-awesome',
-						color: CRAYOLA,
-						size: 30
-					}}
-					buttonStyle={styles.button}
-					onPress={importContactsHandler}
-				/>
+				<View style={styles.smallHeaderLeftButtons}>
+					<Button
+						icon={{
+							name: 'book',
+							type: 'font-awesome',
+							color: CRAYOLA,
+							size: 30
+						}}
+						buttonStyle={styles.button}
+						onPress={importContactsHandler}
+					/>
+					<Button
+						icon={{
+							name: 'eraser',
+							type: 'font-awesome',
+							color: CRAYOLA,
+							size: 30
+						}}
+						buttonStyle={styles.button}
+						onPress={clearAllContactsHandler}
+					/>
+
+				</View>
 				<Animated.Text style={{ ...styles.smallHeader, opacity: smallHeaderOpacity }}>
 					Contacts
 				</Animated.Text>

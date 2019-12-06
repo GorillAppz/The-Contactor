@@ -21,6 +21,8 @@ const ContactList = () => {
 	React.useEffect(() => {
 		if (contacts.data.length) {
 			setFilteredContacts(groupContacts(contacts.data));
+		} else {
+			setFilteredContacts([]);
 		}
 	}, [contacts]);
 

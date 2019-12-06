@@ -1,7 +1,5 @@
 import { getAllContacts } from '../services/contactFileService';
 
-import { clearStorage } from '../services/contactFileService';
-
 const isNumber = (char) => !Number.isNaN(char - parseFloat(char));
 
 export const groupContacts = (contacts) => {
@@ -49,6 +47,4 @@ export const updateAndGetContactList = async () => {
 	const contacts = await getAllContacts();
 	const sortedContacts = contacts.sort((a, b) => ((a.data.name > b.data.name) ? 1 : -1));
 	return sortedContacts;
-	// comment above and uncomment below to clearStorage
-	// await clearStorage();
 }
