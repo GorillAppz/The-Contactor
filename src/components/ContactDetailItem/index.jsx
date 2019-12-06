@@ -6,6 +6,7 @@ import ContactImageThumbnail from '../ContactImageThumbnail/index';
 import styles from './styles';
 import { contactType } from '../../types';
 import AddNewContactModal from '../AddNewContactModal/index';
+import { removeContact } from '../../services/contactFileService';
 
 const ContactDetailItem = ({ contact, updateContacts }) => {
 	const [showAddContactModal, setShowAddContactModal] = React.useState(false);

@@ -25,7 +25,15 @@ const AddNewContactModal = ({ isVisible, cancelHandler, updateContacts, prevCont
 
 	const submitHandler = (values) => {
 		if (prevContact) {
-			updateContact(prevContact);
+			const contact = {
+				id: prevContact.id,
+				data: {
+					name: values.name,
+					phoneNumber: values.phoneNumber,
+					image: values.image
+				}
+			};
+			updateContact(contact);
 		} else {
 			const contact = {
 				name: values.name,

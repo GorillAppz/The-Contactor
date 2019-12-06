@@ -62,8 +62,8 @@ export const loadContact = async (fileName) => (
 	onException(() => FileSystem.readAsStringAsync(`${contactDirectory}/${fileName}`))
 );
 
-export const removeContact = async (fileName) => (
-	onException(() => FileSystem.deleteAsync(`${contactDirectory}/${fileName}`, { idempotent: true }))
+export const removeContact = async (contact) => (
+	onException(() => FileSystem.deleteAsync(`${contactDirectory}/${contact.id}.json`, { idempotent: true }))
 );
 
 export const getAllContacts = async () => {
@@ -88,7 +88,7 @@ export const getContactById = async (contactId) => {
 };
 
 export const updateContact = async (contact) => {
-	removeContact(`${contact.id}.json`);
+	removeContact(contact);
 	addContact(contact.data, contact.id);
 };
 
