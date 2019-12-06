@@ -1,6 +1,5 @@
 export const isNumber = (char) => !Number.isNaN(char - parseFloat(char));
 
-
 export const groupContacts = (contacts) => {
 	const groupedObj = contacts.reduce((obj, contact) => {
 		let firstChar = contact.data.name.charAt(0).toUpperCase();

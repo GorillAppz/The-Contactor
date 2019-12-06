@@ -38,13 +38,13 @@ const ContactList = ({ contacts, updateContacts, isLoading }) => {
 		await updateContacts();
 	};
 
-	const saveContactHandler = (contact) => {
+	const saveContactHandler = () => {
 		updateContacts();
 		setShowAddContactModal(false);
 	};
 
 	const renderSectionHeader = ({ section }) => <ContactListSectionHeader title={section.title} />;
-	const renderItem = ({ item }) => (<ContactListItem contact={item} />);
+	const renderItem = ({ item }) => (<ContactListItem contact={item} updateContacts={updateContacts} />);
 	const keyExtractor = (contact) => contact.id;
 
 	return (
@@ -82,7 +82,6 @@ const ContactList = ({ contacts, updateContacts, isLoading }) => {
 			<AddNewContactModal
 				isVisible={showAddContactModal}
 				cancelHandler={() => setShowAddContactModal(false)}
-				submitHandler={saveContactHandler}
 				updateContacts={updateContacts}
 			/>
 		</View>

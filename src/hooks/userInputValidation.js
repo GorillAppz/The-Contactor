@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const userInputValidation = (initialState, validate, submitHandler) => {
+const userInputValidation = (initialState, validate, submitHandler) => {
 	const [values, setValues] = React.useState(initialState);
 	const [errors, setErrors] = React.useState({});
 	const [isSubmitting, setSubmitting] = React.useState(false);
@@ -38,6 +38,4 @@ export const userInputValidation = (initialState, validate, submitHandler) => {
 	return { handleSubmit, handleChangeText, values, errors, isSubmitting, resetFields };
 };
 
-export const openModal = () => {
-
-};
+export default userInputValidation;

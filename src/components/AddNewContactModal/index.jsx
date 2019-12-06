@@ -12,7 +12,7 @@ import { validateContact } from '../../helpers';
 import styles from './styles';
 import { LIGHT_GRAY } from '../../styles/colors';
 import { isVisibleType, cancelHandlerType, UpdateContactsType } from '../../types';
-import { createContact } from '../../services/contactFileService';
+import { createContact, updateContact } from '../../services/contactFileService';
 
 const initialState = {
 	name: '',
@@ -20,17 +20,23 @@ const initialState = {
 	image: ''
 };
 
-const AddNewContactModal = ({ isVisible, cancelHandler, updateContacts }) => {
+const AddNewContactModal = ({ isVisible, cancelHandler, updateContacts, prevContact }) => {
+	const state = prevContact ? prevContact.data : initialState;
+
 	const submitHandler = (values) => {
-		const contact = {
-			name: values.name,
-			phoneNumber: values.phoneNumber,
-			image: values.image
-		};
-		createContact(contact);
+		if (prevContact) {
+			updateContact(prevContact);
+		} else {
+			const contact = {
+				name: values.name,
+				phoneNumber: values.phoneNumber,
+				image: values.image
+			};
+			createContact(contact);
+		}
 		cancelHandler();
-		updateContacts();
 	};
+
 	const {
 		handleSubmit,
 		handleChangeText,
@@ -38,7 +44,7 @@ const AddNewContactModal = ({ isVisible, cancelHandler, updateContacts }) => {
 		errors,
 		isSubmitting,
 		resetFields
-	} = useUserInputValidation(initialState, validateContact, submitHandler);
+	} = useUserInputValidation(state, validateContact, submitHandler);
 
 	return (
 		<Modal
