@@ -9,7 +9,7 @@ import { contactType } from '../../types';
 
 const ContactListItem = ({ contact, navigation: { navigate } }) => (
 	<TouchableHighlight
-		onPress={() => navigate('ContactDetail', { contact })}
+		onPress={() => navigate('ContactDetail', { contactId: contact.id })}
 		style={styles.touchableContainer}
 	>
 		<View style={styles.container}>

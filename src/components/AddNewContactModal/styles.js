@@ -33,7 +33,8 @@ export default StyleSheet.create({
 	},
 	inputContainer: {
 		borderBottomColor: GRAY,
-		marginHorizontal: -8
+		marginHorizontal: -8,
+		paddingHorizontal: 15
 	},
 	inputBody: {
 		borderTopWidth: 0.8,

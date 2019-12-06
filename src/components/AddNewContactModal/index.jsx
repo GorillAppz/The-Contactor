@@ -6,14 +6,15 @@ import { SafeAreaView, View } from 'react-native';
 import Text from '../Text';
 import ThumbnailInput from '../ThumbnailInput';
 
-import useUserInputValidation from '../../hooks/userInputValidation';
+import useForm from '../../hooks/useForm';
 import { validateContact, updateAndGetContactList } from '../../helpers';
 
 import styles from './styles';
 import { LIGHT_GRAY } from '../../styles/colors';
 
-import { createContact } from '../../services/contactFileService';
 import ContactsContext from '../../contexts/contactsContext';
+import { isVisibleType, cancelHandlerType, UpdateContactsType } from '../../types';
+import { createContact, updateContact } from '../../services/contactFileService';
 
 const initialState = {
 	name: '',
@@ -21,34 +22,42 @@ const initialState = {
 	image: ''
 };
 
-const AddNewContactModal = ({ isVisible, closeModalHandler }) => {
+const AddNewContactModal = ({ isVisible, closeModalHandler, prevContact }) => {
 	const { setContacts } = React.useContext(ContactsContext);
 
+	const state = prevContact ? prevContact.data : initialState;
+
 	const submitHandler = async (values) => {
-		const contact = {
-			name: values.name,
-			phoneNumber: [
-				{
-					label: 'mobile',
-					phone: values.phoneNumber
+		if (prevContact) {
+			const contact = {
+				id: prevContact.id,
+				data: {
+					name: values.name,
+					phoneNumber: values.phoneNumber,
+					image: values.image
 				}
-			],
-			image: values.image
-		};
-		await createContact(contact);
-		const refreshedContacts = await updateAndGetContactList();
-		setContacts({ data: refreshedContacts, isLoading: false });
+			};
+			updateContact(contact);
+			const refreshedContacts = await updateAndGetContactList();
+			setContacts({ data: refreshedContacts, isLoading: false });
+		} else {
+			const contact = {
+				name: values.name,
+				phoneNumber: values.phoneNumber,
+				image: values.image
+			};
+			createContact(contact);
+			const refreshedContacts = await updateAndGetContactList();
+			setContacts({ data: refreshedContacts, isLoading: false });
+		}
 		closeModalHandler();
 	};
 
-	const {
-		handleSubmit,
-		handleChangeText,
-		values,
-		errors,
-		isSubmitting,
-		resetFields
-	} = useUserInputValidation(initialState, validateContact, submitHandler);
+	const { handleSubmit, handleChangeText, values, errors, isSubmitting, resetFields } = useForm(
+		state,
+		validateContact,
+		submitHandler
+	);
 
 	return (
 		<Modal
@@ -56,6 +65,8 @@ const AddNewContactModal = ({ isVisible, closeModalHandler }) => {
 			style={styles.modal}
 			onModalShow={() => resetFields()}
 			onModalHide={() => resetFields()}
+			animationIn={prevContact ? 'fadeIn' : 'slideInUp'}
+			animationOut={prevContact ? 'fadeOut' : 'slideOutDown'}
 		>
 			<SafeAreaView style={styles.container}>
 				<View style={styles.options}>
@@ -102,8 +113,9 @@ const AddNewContactModal = ({ isVisible, closeModalHandler }) => {
 						maxLength={100}
 						multiline
 						blurOnSubmit
-						onChangeText={(text) => handleChangeText('phoneNumber', text)}
+						onChangeText={(text) => handleChangeText('phoneNumber', text.replace(/[^0-9]/g, ''))}
 						inputContainerStyle={styles.inputContainer}
+						keyboardType="numeric"
 					/>
 				</View>
 			</SafeAreaView>

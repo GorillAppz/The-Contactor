@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, View } from 'react-native';
 import tinyColor from 'tinycolor2';
-import { Icon } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import Text from '../Text';
 import { LIGHT, DARK } from '../../styles/colors';
@@ -27,12 +27,14 @@ const ContactImageThumbnail = ({ uri, name, width, height, fontSize }) => {
 			setTextColor(tinyColor(bgColor).isDark() ? LIGHT : DARK);
 		}, [bgColor]);
 
-		const initials = name.split(' ').map((x) => x.charAt(0).toUpperCase());
+		const initials = name.length ? name.split(' ').map((x) => x.charAt(0).toUpperCase()) : '';
+
 		return (
 			<View style={{ ...styles.withoutImageTextContainer, backgroundColor: bgColor }}>
-				{initials.length > 1
+				{initials.length
 					? <Text style={{ color: textColor, fontSize }}>{initials}</Text>
-					: <Icon type="font-awesome" name="user" size={height - 10} iconStyle={{ color: textColor }} />}
+					: <Icon name="user-astronaut" size={height - 10} iconStyle={{ color: textColor }} />
+				}
 			</View>
 		);
 	};

@@ -36,19 +36,12 @@ export const importContactsFromPhone = async () => {
 		if (contact.image) {
 			imageUri = contact.image.uri;
 		}
-		let phone = [];
-		if (contact.phoneNumbers) {
-			phone = contact.phoneNumbers.map((phone) => ({
-				phone: phone.digits,
-				label: phone.label
-			}));
-		}
 
 		return {
 			id: contact.id,
 			data: {
 				name: contact.name,
-				phoneNumber: phone,
+				phoneNumber: contact.phoneNumbers[0].digits,
 				image: imageUri
 			}
 		};
@@ -68,6 +61,10 @@ export const loadContact = async (fileName) => (
 	onException(() => FileSystem.readAsStringAsync(`${contactDirectory}/${fileName}`))
 );
 
+export const removeContact = async (contact) => (
+	onException(() => FileSystem.deleteAsync(`${contactDirectory}/${contact.id}.json`, { idempotent: true }))
+);
+
 export const getAllContacts = async () => {
 	// Check if directory exists
 	await setupDirectory();
@@ -77,6 +74,18 @@ export const getAllContacts = async () => {
 		id: fileName.split('.')[0],
 		data: JSON.parse(await loadContact(fileName))
 	})));
+};
+
+export const getContactById = async (contactId) => {
+	const contacts = await getAllContacts();
+	const contact = contacts.find((c) => c.id === contactId);
+
+	return contact;
+};
+
+export const updateContact = async (contact) => {
+	removeContact(contact);
+	addContact(contact.data, contact.id);
 };
 
 // used for development, to delete local storage

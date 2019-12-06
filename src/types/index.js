@@ -7,15 +7,10 @@ export const idType = shape({
 	id: string.isRequired
 });
 
-export const phoneNumberType = shape({
-	label: string.isRequired,
-	phone: string.isRequired
-});
-
 export const dataType = shape({
 	image: string.isRequired,
 	name: string.isRequired,
-	phoneNumber: arrayOf(phoneNumberType).isRequired
+	phoneNumber: string.isRequired
 });
 
 export const contactType = shape({
