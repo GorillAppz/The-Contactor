@@ -29,6 +29,7 @@ export const createContact = async (contact) => {
 
 export const importContactsFromPhone = async () => {
 	const contacts = await getAllPhoneContacts();
+	console.log(contacts);
 	const contactsWithDefinedName = contacts.filter((contact) => contact.name !== undefined);
 	const nonEmialContacts = contactsWithDefinedName.filter((contact) => contact.phoneNumbers);
 	const extractedContacts = nonEmialContacts.map((contact) => {
@@ -41,7 +42,7 @@ export const importContactsFromPhone = async () => {
 			id: contact.id,
 			data: {
 				name: contact.name,
-				phoneNumber: contact.phoneNumbers[0].digits,
+				phoneNumber: contact.phoneNumbers[0].number,
 				image: imageUri
 			}
 		};
