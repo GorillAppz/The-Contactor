@@ -72,10 +72,4 @@ const ContactList = () => {
 	);
 };
 
-// ContactList.propTypes = {
-// 	contacts: contactsType.isRequired,
-// 	updateContacts: UpdateContactsType.isRequired,
-// 	isLoading: boolType.isRequired
-// };
-
 export default ContactList;

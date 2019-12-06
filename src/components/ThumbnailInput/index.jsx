@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import { takePhoto, selectFromCameraRoll } from '../../services/imageService';
 import Text from '../Text';
 import styles from './styles';
-import { stringType, inputHandlerType } from '../../types';
+import { stringType, funcType } from '../../types';
 import ContactImageThumbnail from '../ContactImageThumbnail/index';
 
 const ThumbnailInput = ({ currImage, errorMsg, inputHandler, contactName }) => {
@@ -44,7 +44,7 @@ const ThumbnailInput = ({ currImage, errorMsg, inputHandler, contactName }) => {
 ThumbnailInput.propTypes = {
 	currImage: stringType.isRequired,
 	errorMsg: stringType,
-	inputHandler: inputHandlerType.isRequired,
+	inputHandler: funcType.isRequired,
 	contactName: stringType
 };
 

@@ -22,15 +22,6 @@ export const contactsType = arrayOf(
 	contactType
 );
 
-export const UpdateContactsType = func;
-
-export const submitHandlerType = func;
-export const cancelHandlerType = func;
-export const inputHandlerType = func;
-export const openAddContactModalHandlerType = func;
-export const importContactsHandlerType = func;
-export const isVisibleType = bool;
-
 export const stringType = string;
 export const numberType = number;
 export const funcType = func;

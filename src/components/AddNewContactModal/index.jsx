@@ -5,16 +5,13 @@ import { SafeAreaView, View } from 'react-native';
 
 import Text from '../Text';
 import ThumbnailInput from '../ThumbnailInput';
-
 import useForm from '../../hooks/useForm';
 import { validateContact, updateAndGetContactList } from '../../helpers';
-
 import styles from './styles';
 import { LIGHT_GRAY } from '../../styles/colors';
-
 import ContactsContext from '../../contexts/contactsContext';
-import { isVisibleType, cancelHandlerType, UpdateContactsType } from '../../types';
 import { createContact, updateContact } from '../../services/contactFileService';
+import { boolType, funcType, contactType } from '../../types/index';
 
 const initialState = {
 	name: '',
@@ -123,8 +120,10 @@ const AddNewContactModal = ({ isVisible, closeModalHandler, prevContact }) => {
 	);
 };
 
-// AddNewContactModal.propTypes = {
-// 	isVisible: isVisibleType.isRequired
-// };
+AddNewContactModal.propTypes = {
+	isVisible: boolType.isRequired,
+	closeModalHandler: funcType.isRequired,
+	prevContact: contactType
+};
 
 export default AddNewContactModal;

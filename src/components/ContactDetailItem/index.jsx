@@ -1,14 +1,13 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
+import { Linking } from 'expo';
 
 import ContactImageThumbnail from '../ContactImageThumbnail/index';
 import styles from './styles';
-import { contactType } from '../../types';
 import AddNewContactModal from '../AddNewContactModal/index';
-import { removeContact } from '../../services/contactFileService';
 import contactsContext from '../../contexts/contactsContext';
-import { Linking } from 'expo';
+import { stringType } from '../../types';
 
 const emptyContact = {
 	data: {
@@ -84,8 +83,8 @@ const ContactDetailItem = ({ contactId }) => {
 	);
 };
 
-// ContactDetailItem.propTypes = {
-// 	contact: contactType
-// };
+ContactDetailItem.propTypes = {
+	contactId: stringType.isRequired
+};
 
 export default ContactDetailItem;

@@ -27,8 +27,8 @@ const ContactListItem = ({ contact, navigation: { navigate } }) => (
 	</TouchableHighlight>
 );
 
-// ContactListItem.propTypes = {
-// 	contact: contactType
-// };
+ContactListItem.propTypes = {
+	contact: contactType
+};
 
 export default React.memo(withNavigation(ContactListItem));

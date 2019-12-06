@@ -2,9 +2,7 @@ import React from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
 
 import ContactList from '../../components/ContactList';
-
 import ContactsContext from '../../contexts/contactsContext';
-
 import { updateAndGetContactList } from '../../helpers/index';
 
 import styles from './styles';
@@ -21,12 +19,9 @@ const Contacts = () => {
 		})();
 	}, []);
 
-
 	return (
 		<SafeAreaView style={{ ...styles.container, ...styles.SafeArea }}>
-
 			<ContactList />
-
 		</SafeAreaView>
 	);
 };

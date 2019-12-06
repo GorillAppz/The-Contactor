@@ -33,8 +33,7 @@ const ContactImageThumbnail = ({ uri, name, width, height, fontSize }) => {
 			<View style={{ ...styles.withoutImageTextContainer, backgroundColor: bgColor }}>
 				{initials.length
 					? <Text style={{ color: textColor, fontSize }}>{initials}</Text>
-					: <Icon name="user-astronaut" size={height - 10} iconStyle={{ color: textColor }} />
-				}
+					: <Icon name="user-astronaut" size={height - 10} iconStyle={{ color: textColor }} />}
 			</View>
 		);
 	};

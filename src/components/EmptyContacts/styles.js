@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { GRAY } from '../../styles/colors';
 
 export default StyleSheet.create({
 	container: {
@@ -9,7 +10,7 @@ export default StyleSheet.create({
 		padding: 20
 	},
 	text: {
-		color: 'gray',
+		color: GRAY,
 		textAlign: 'center',
 		fontSize: 20,
 		fontWeight: 'bold'
