@@ -43,6 +43,9 @@ export default StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between'
 	},
+	smallHeaderLeftButtons: {
+		flexDirection: 'row'
+	},
 	bigHeader: {
 		fontWeight: '800',
 		fontSize: 40,

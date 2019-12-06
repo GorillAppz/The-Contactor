@@ -92,7 +92,7 @@ export const updateContact = async (contact) => {
 export const clearStorage = async () => {
 	await setupDirectory();
 	const result = await onException(() => FileSystem.readDirectoryAsync(contactDirectory));
-	return Promise.all(result.forEach(async (fileName) => {
-		await FileSystem.deleteAsync(`${contactDirectory}/${fileName}`);
-	}));
+	return Promise.all(result.map(async (fileName) => (
+		FileSystem.deleteAsync(`${contactDirectory}/${fileName}`)
+	)));
 };
