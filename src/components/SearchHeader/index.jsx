@@ -8,7 +8,7 @@ import Text from '../Text';
 import ContactsContext from '../../contexts/contactsContext';
 import { importContactsFromPhone, clearStorage } from '../../services/contactFileService';
 import { updateAndGetContactList } from '../../helpers';
-import { funcType, numberType } from '../../types';
+import { funcType, objectType } from '../../types';
 
 
 const MAX_HEADER_HEIGHT = 150;
@@ -121,7 +121,7 @@ const SearchHeader = ({ inputHandler, scrollY, openAddContactModalHandler }) => 
 
 SearchHeader.propTypes = {
 	inputHandler: funcType.isRequired,
-	scrollY: numberType.isRequired,
+	scrollY: objectType.isRequired,
 	openAddContactModalHandler: funcType.isRequired
 };
 
