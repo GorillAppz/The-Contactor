@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, Animated, Alert } from 'react-native';
+import { View, Animated, Alert } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 
 import { CRAYOLA, LIGHT_GRAY } from '../../styles/colors';
 import styles from './styles';
+import Text from '../Text';
 import ContactsContext from '../../contexts/contactsContext';
 import { importContactsFromPhone, clearStorage } from '../../services/contactFileService';
 import { updateAndGetContactList } from '../../helpers';

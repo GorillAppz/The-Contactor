@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { Linking } from 'expo';
 
+import Text from '../Text';
 import ContactImageThumbnail from '../ContactImageThumbnail/index';
 import styles from './styles';
 import AddNewContactModal from '../AddNewContactModal/index';
